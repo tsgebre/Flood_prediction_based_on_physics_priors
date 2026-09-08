@@ -1,21 +1,4 @@
 """Training loop and the physics-informed loss.
-
-Fixes relative to the original repo
-------------------------------------
-* Constraint strength is a **fixed hyperparameter** (default) or a proper
-  **Lagrange multiplier updated by dual ascent** (``adaptive_physics=True``) --
-  never a plain parameter descended on the same loss (which collapses to 0).
-* Thresholds are fixed model buffers (see :mod:`src.models`), not trained.
-* Three physically-motivated soft constraints:
-    1. **Non-negativity** -- predicted discharge must not fall below physical 0
-       (unconditionally valid; was missing entirely before).
-    2. **Lag-tolerant monotonicity** -- a sustained rise in *smoothed* rainfall
-       should not be followed by *lower* discharge ``lag`` steps later
-       (respects rainfall-runoff lag instead of demanding a same-step response).
-    3. **Lagged flood threshold** -- when trailing-window rainfall is extreme,
-       discharge over the following window should approach the flood level.
-* Gradient clipping for RNN stability; per-batch-averaged loss history returned
-  for plotting/inspection.
 """
 
 import copy
