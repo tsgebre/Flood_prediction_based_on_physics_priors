@@ -145,15 +145,15 @@ awk '/^<!-- PLAN-LOCK -->$/{exit} {print}' ANALYSIS_PLAN.md | sha256sum
 
 The evaluate.py and test_evaluate.py hashes cover the whole file:
 
-sha256sum <file>
-
 <!-- PLAN-LOCK -->
 
 Lock record (2026-07-28T01:22:19-04:00).
 
 ANALYSIS_PLAN.md (content above the marker): sha256 =
 e4b69b1722d12b1f233d883fb953e8fe078ff4714fe167c175327fe20162c17c
+
 evaluate.py: sha256 =
 c1d3a3f3923ce5b6864f031ef32c0742285693578e1e271b6cfe301a7c1c60c6
+
 test_evaluate.py (10/10 fixture tests passing at lock): sha256 =
 10d27a1b84187af3f0f657537e5c7e956a4200be5e164c7839838ecd072a1b18
