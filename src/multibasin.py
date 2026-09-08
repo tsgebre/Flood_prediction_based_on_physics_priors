@@ -5,8 +5,8 @@ routes them to a per-basin physics prescription (:mod:`src.router`), then trains
 stress-tests two models under simulated discharge-sensor failure, across one or more
 random seeds:
 
-* **Control**        — meteorology + discharge + missingness channel, no physics.
-* **Router-physics** — the same, plus the degree-day snow features and the
+* Control: meteorology + discharge + missingness channel, no physics.
+* Router-physics: the same, plus the degree-day snow features and the
   attribute-gated physics loss the router selected for that basin.
 
 With several seeds it reports the per-basin gain as mean ± std with a paired t-test.
