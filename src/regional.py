@@ -3,18 +3,18 @@
 One network is trained over all basins pooled — the CAMELS-DL convention (Kratzert
 et al. 2019). Key differences from the single-basin pipeline (:mod:`src.main`):
 
-* discharge is converted to **specific discharge (mm/day)** via catchment area, so a
+* discharge is converted to specific discharge (mm/day) via catchment area, so a
   single global scaler is physically comparable across basins;
-* dynamic features, static attributes, and discharge are normalized on the **pooled
-  training** data (not per basin);
-* each basin's **static attributes** (frac_snow, aridity, baseflow_index, …) are
+* dynamic features, static attributes, and discharge are normalized on the pooled
+  training data (not per basin);
+* each basin's static attributes (frac_snow, aridity, baseflow_index, …) are
   broadcast over time and appended to the inputs, letting one network specialize;
-* the **physics** is attribute-gated per basin: the snow features (`w_eff`,
+* the physics is attribute-gated per basin: the snow features (`w_eff`,
   `swe_recon`) plus a snow-physics loss whose thresholds and weights are gathered
-  **per sample by basin index** (the router of :mod:`src.router`).
+  per sample by basin index (the router of :mod:`src.router`).
 
 Windows never straddle a basin boundary. Evaluation is per basin under the same
-seeded sensor-failure mask; the headline is the **median NSE across basins**.
+seeded sensor-failure mask; the headline is the median NSE across basins.
 
     python -m src.regional --quick
     python -m src.regional --physics --epochs 20 --hidden 64
@@ -255,8 +255,8 @@ def _regional_data_loss(pred, y, bidx, qstd_t, loss_type, eps=0.1):
     'nse' = basin-averaged NSE loss: each sample's squared error divided by its basin's
     discharge variance, so every basin contributes equally (Kratzert et al. 2019)."""
     if loss_type == "nse":
-        denom = (qstd_t[bidx].view(-1, 1) + eps) ** 2
-        return torch.mean((pred - y) ** 2 / denom)
+        denom = (qstd_t[bidx].view(-1, 1) + eps)  2
+        return torch.mean((pred - y)  2 / denom)
     return F.mse_loss(pred, y)
 
 
