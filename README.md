@@ -16,7 +16,7 @@ the 11 study basins.
 | `scripts/` | analysis utilities |
 | `results/frozen_protocol/` | headline artifact `frozen_protocol.json` (complete training configuration embedded) + per-basin `summary.csv` (source of the results table) + reproducibility-gate record |
 | `results/frozen_protocol_negatives/` | pre-registered negative-control evaluation (`evaluation.json`, verdicts and equivalence bounds) + assembled per-seed data |
-| `research/frozen_protocol_negatives/ANALYSIS_PLAN.md` | hash-locked pre-registration of the negative-control analysis (endpoints, equivalence bound derivation, decision rule, disclosures); self-verifying — recompute the lock with the awk command in its §8 |
+| `research/frozen_protocol_negatives/ANALYSIS_PLAN.md` | hash-locked pre-registration of the negative-control analysis (endpoints, equivalence bound derivation, decision rule, disclosures); self-verifying — recompute the lock with the awk command in its 8 |
 | `results/state_memory/`, `results/amc_memory/` | state-memory measurement artifacts (snow store; AMC bucket) |
 | `results/seed_power/` | seed-power (p-value trajectory) artifact |
 | `results/signatures.json` | static catchment signatures (router inputs, recession constants) |
@@ -46,5 +46,5 @@ download CAMELS-US and place files in `data/` with the same naming.
 - All numbers reported in the paper are read from the artifacts under
   `results/`; the headline table derives from
   `results/frozen_protocol/summary.csv`.
-- Verify the pre-registration lock: the command in ANALYSIS_PLAN.md §8 recomputes the plan's above-marker sha256 (`e4b69b17…`); the verdicts in `results/frozen_protocol_negatives/evaluation.json` name this plan as their governing document. (The locked evaluator's hashes are also recorded in §8; the evaluator script itself ships with the archived full repository.)
+- Verify the pre-registration lock: the command in ANALYSIS_PLAN.md 8 recomputes the plan's above-marker sha256 (`e4b69b17…`); the verdicts in `results/frozen_protocol_negatives/evaluation.json` name this plan as their governing document. (The locked evaluator's hashes are also recorded in 8; the evaluator script itself ships with the archived full repository.)
 - Verify package integrity: `sha256sum -c MANIFEST.sha256`.
