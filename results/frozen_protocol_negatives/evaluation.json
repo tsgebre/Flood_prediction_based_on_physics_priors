@@ -1,0 +1,117 @@
+{
+  "status": "EVALUATED",
+  "plan": "research/frozen_protocol_negatives/ANALYSIS_PLAN.md (locked 2026-07-28)",
+  "eps_dNSE": 0.0332,
+  "eps_flood_pct": 11.5,
+  "cells": {
+    "amc/01013500": {
+      "n_seeds": 10,
+      "dNSE_mean": 0.07175384163856506,
+      "dNSE_ci90": [
+        0.035244077305661876,
+        0.10826360597146825
+      ],
+      "dNSE_ci95": [
+        0.02669856647749836,
+        0.11680911679963177
+      ],
+      "p_NSE": 0.005724567566697748,
+      "verdict": "BENEFIT \u2014 FAIL",
+      "qualifier": null,
+      "sensitivity_ci95_verdict": "INCONCLUSIVE",
+      "standalone_bonferroni_verdict": "INCONCLUSIVE",
+      "flood_descriptive": {
+        "red_pct_mean": 24.22802983973076,
+        "red_pct_ci95": [
+          -2.2425504986502816,
+          50.6986101781118
+        ],
+        "p_floodMAE": 0.02443657045214782,
+        "below_eps_flood": false
+      }
+    },
+    "amc/07067000": {
+      "n_seeds": 10,
+      "dNSE_mean": 0.012718331813812257,
+      "dNSE_ci90": [
+        -0.0098505123401262,
+        0.03528717596775072
+      ],
+      "dNSE_ci95": [
+        -0.01513299787846218,
+        0.04056966150608669
+      ],
+      "p_NSE": 0.32855566838268313,
+      "verdict": "INCONCLUSIVE",
+      "qualifier": null,
+      "sensitivity_ci95_verdict": "INCONCLUSIVE",
+      "standalone_bonferroni_verdict": "INCONCLUSIVE",
+      "flood_descriptive": {
+        "red_pct_mean": -0.9861621625827752,
+        "red_pct_ci95": [
+          -6.313041170061561,
+          4.340716844896011
+        ],
+        "p_floodMAE": 0.720638474195347,
+        "below_eps_flood": true
+      }
+    },
+    "recession/11143000": {
+      "n_seeds": 10,
+      "dNSE_mean": -0.009030616283416748,
+      "dNSE_ci90": [
+        -0.03126806755958378,
+        0.01320683499275028
+      ],
+      "dNSE_ci95": [
+        -0.0364729869597341,
+        0.018411754392900596
+      ],
+      "p_NSE": 0.4756090248599177,
+      "verdict": "EQUIVALENT",
+      "qualifier": null,
+      "sensitivity_ci95_verdict": "NO-BENEFIT",
+      "standalone_bonferroni_verdict": "NO-BENEFIT",
+      "flood_descriptive": {
+        "red_pct_mean": -1.503791431475395,
+        "red_pct_ci95": [
+          -11.154731070105843,
+          8.147148207155052
+        ],
+        "p_floodMAE": 0.828496238753908,
+        "below_eps_flood": true
+      }
+    },
+    "recession/01466500": {
+      "n_seeds": 10,
+      "dNSE_mean": 0.0008334040641784668,
+      "dNSE_ci90": [
+        -0.0020633238590001476,
+        0.0037301319873570818
+      ],
+      "dNSE_ci95": [
+        -0.0027413348044572168,
+        0.004408142932814151
+      ],
+      "p_NSE": 0.6106732376848003,
+      "verdict": "EQUIVALENT",
+      "qualifier": null,
+      "sensitivity_ci95_verdict": "EQUIVALENT",
+      "standalone_bonferroni_verdict": "EQUIVALENT",
+      "flood_descriptive": {
+        "red_pct_mean": -0.3155849451429169,
+        "red_pct_ci95": [
+          -0.6030790142551726,
+          -0.028090876030661183
+        ],
+        "p_floodMAE": 0.034905456834925706,
+        "below_eps_flood": true
+      }
+    }
+  },
+  "arms": {
+    "amc": "specificity claim fails",
+    "recession": "confirms specificity"
+  },
+  "study_confirms_specificity": false
+}

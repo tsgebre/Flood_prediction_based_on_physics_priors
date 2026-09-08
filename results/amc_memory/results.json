@@ -1,0 +1,2942 @@
+{
+  "config": {
+    "label": "EXPLORATORY / POST-HOC (FP-009) -- designed after the FP-008 amc/01013500 BENEFIT verdict; prediction pre-stated in design.md",
+    "task": "FP-009 AMC state-memory diagnostic",
+    "basins": [
+      "01013500",
+      "01466500",
+      "02177000",
+      "07067000",
+      "08202700",
+      "09210500",
+      "09352900",
+      "09512280",
+      "11143000",
+      "11266500",
+      "12040500"
+    ],
+    "loader": "src.dataset.load_and_preprocess_data with all defaults (start 1980-01-01, end 1999-12-31, split (0.70, 0.15)) -- identical to the production call src/multibasin.py:59-62",
+    "amc_k": 0.93,
+    "amc_k_source": "src/dataset.py:37 (API_DECAY); production call :285 (default k)",
+    "api_identity_check": "antecedent_index(w_eff) re-derivation bitwise-equal to loader api",
+    "estimator": "CC-02 primary (research/state_memory/run.py): per complete water year, amount-weighted centroid lag input->release; input = total prcp, release = (1-k)*API_{t-1} (see design.md)",
+    "water_year": "Oct 1 - Sep 30, labeled by ending year; complete WYs only",
+    "input_min_mm": 10.0,
+    "acf_max_lag_days": 400,
+    "seq_len_window_days": 30,
+    "analytic_bucket_memory_days": {
+      "efold": 13.78,
+      "mean_residence_discrete": 13.29
+    },
+    "cc02_reference": "results/state_memory/state_memory.json",
+    "provenance": {
+      "script": "research/amc_memory/run.py",
+      "script_sha256": "41a3a1e5eab48d98f89efd7763fb3e558ae968ba7838e38a7de827149ed62701",
+      "design_sha256": "f6cc0ecd18ff8654f7959ea930d99b04092d41770555191fb656308e0e10b65f",
+      "design_mtime_utc": "2026-07-28T05:50:54Z",
+      "run_utc": "2026-07-28T05:53:46Z"
+    }
+  },
+  "basins": {
+    "01013500": {
+      "gauge": "01013500",
+      "frac_snow": 0.275,
+      "study_period": {
+        "amc_state_memory_days": {
+          "mean": 21.62,
+          "sd": 8.05,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 24.04,
+          "sd": 6.81,
+          "n": 19
+        },
+        "bucket_lag_days": {
+          "mean": -2.42,
+          "sd": 3.85,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "amc_state_memory_days": {
+          "mean": 21.82,
+          "sd": 2.23,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 26.99,
+          "sd": 1.12,
+          "n": 2
+        },
+        "bucket_lag_days": {
+          "mean": -5.17,
+          "sd": 3.35,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "exceeds_30d_window": false,
+      "api_acf_efold_days": 28,
+      "api_start_mm_max": 79.6,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "prcp_mm": 1282.6,
+          "api_start_mm": 56.0,
+          "swe_start_mm": 0.0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 17.36,
+          "lag_snowpath_d": 19.93,
+          "lag_bucket_d": -2.57
+        },
+        {
+          "wy": 1982,
+          "prcp_mm": 1193.8,
+          "api_start_mm": 61.2,
+          "swe_start_mm": 0.0,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 24.5,
+          "lag_snowpath_d": 28.55,
+          "lag_bucket_d": -4.05
+        },
+        {
+          "wy": 1983,
+          "prcp_mm": 1224.7,
+          "api_start_mm": 60.5,
+          "swe_start_mm": 0.0,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 15.96,
+          "lag_snowpath_d": 16.84,
+          "lag_bucket_d": -0.88
+        },
+        {
+          "wy": 1984,
+          "prcp_mm": 1355.0,
+          "api_start_mm": 40.6,
+          "swe_start_mm": 0.0,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 46.29,
+          "lag_snowpath_d": 41.27,
+          "lag_bucket_d": 5.03
+        },
+        {
+          "wy": 1985,
+          "prcp_mm": 997.3,
+          "api_start_mm": 21.1,
+          "swe_start_mm": 0.0,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 20.9,
+          "lag_snowpath_d": 20.49,
+          "lag_bucket_d": 0.41
+        },
+        {
+          "wy": 1986,
+          "prcp_mm": 1133.5,
+          "api_start_mm": 60.5,
+          "swe_start_mm": 0.0,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 11.16,
+          "lag_snowpath_d": 18.02,
+          "lag_bucket_d": -6.86
+        },
+        {
+          "wy": 1987,
+          "prcp_mm": 923.0,
+          "api_start_mm": 74.5,
+          "swe_start_mm": 0.0,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 14.83,
+          "lag_snowpath_d": 25.7,
+          "lag_bucket_d": -10.87
+        },
+        {
+          "wy": 1988,
+          "prcp_mm": 969.8,
+          "api_start_mm": 50.4,
+          "swe_start_mm": 0.0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 18.19,
+          "lag_snowpath_d": 19.54,
+          "lag_bucket_d": -1.35
+        },
+        {
+          "wy": 1989,
+          "prcp_mm": 1007.0,
+          "api_start_mm": 29.5,
+          "swe_start_mm": 0.0,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 19.06,
+          "lag_snowpath_d": 17.15,
+          "lag_bucket_d": 1.91
+        },
+        {
+          "wy": 1990,
+          "prcp_mm": 1001.1,
+          "api_start_mm": 34.4,
+          "swe_start_mm": 0.0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 20.25,
+          "lag_snowpath_d": 24.16,
+          "lag_bucket_d": -3.91
+        },
+        {
+          "wy": 1991,
+          "prcp_mm": 1305.8,
+          "api_start_mm": 79.6,
+          "swe_start_mm": 0.0,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 27.15,
+          "lag_snowpath_d": 32.58,
+          "lag_bucket_d": -5.43
+        },
+        {
+          "wy": 1992,
+          "prcp_mm": 1123.9,
+          "api_start_mm": 74.5,
+          "swe_start_mm": 0.0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 18.0,
+          "lag_snowpath_d": 22.33,
+          "lag_bucket_d": -4.33
+        },
+        {
+          "wy": 1993,
+          "prcp_mm": 1018.6,
+          "api_start_mm": 34.2,
+          "swe_start_mm": 0.0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 9.62,
+          "lag_snowpath_d": 12.65,
+          "lag_bucket_d": -3.03
+        },
+        {
+          "wy": 1994,
+          "prcp_mm": 1239.9,
+          "api_start_mm": 58.7,
+          "swe_start_mm": 0.0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 22.21,
+          "lag_snowpath_d": 24.49,
+          "lag_bucket_d": -2.29
+        },
+        {
+          "wy": 1995,
+          "prcp_mm": 927.7,
+          "api_start_mm": 45.1,
+          "swe_start_mm": 0.0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 28.97,
+          "lag_snowpath_d": 30.17,
+          "lag_bucket_d": -1.19
+        },
+        {
+          "wy": 1996,
+          "prcp_mm": 1246.2,
+          "api_start_mm": 26.6,
+          "swe_start_mm": 0.0,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 22.45,
+          "lag_snowpath_d": 18.7,
+          "lag_bucket_d": 3.74
+        },
+        {
+          "wy": 1997,
+          "prcp_mm": 1124.6,
+          "api_start_mm": 41.9,
+          "swe_start_mm": 0.0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 30.22,
+          "lag_snowpath_d": 30.24,
+          "lag_bucket_d": -0.02
+        },
+        {
+          "wy": 1998,
+          "prcp_mm": 1036.1,
+          "api_start_mm": 43.6,
+          "swe_start_mm": 0.0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 23.4,
+          "lag_snowpath_d": 26.2,
+          "lag_bucket_d": -2.8
+        },
+        {
+          "wy": 1999,
+          "prcp_mm": 1050.0,
+          "api_start_mm": 64.3,
+          "swe_start_mm": 0.0,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 20.24,
+          "lag_snowpath_d": 27.78,
+          "lag_bucket_d": -7.54
+        }
+      ]
+    },
+    "01466500": {
+      "gauge": "01466500",
+      "frac_snow": 0.055,
+      "study_period": {
+        "amc_state_memory_days": {
+          "mean": -0.01,
+          "sd": 5.0,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.72,
+          "sd": 0.81,
+          "n": 19
+        },
+        "bucket_lag_days": {
+          "mean": -0.73,
+          "sd": 4.89,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "amc_state_memory_days": {
+          "mean": 3.66,
+          "sd": 5.31,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.21,
+          "sd": 0.16,
+          "n": 2
+        },
+        "bucket_lag_days": {
+          "mean": 3.45,
+          "sd": 5.47,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "exceeds_30d_window": false,
+      "api_acf_efold_days": 17,
+      "api_start_mm_max": 85.9,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "prcp_mm": 995.5,
+          "api_start_mm": 23.7,
+          "swe_start_mm": 0.0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 5.48,
+          "lag_snowpath_d": 0.48,
+          "lag_bucket_d": 5.0
+        },
+        {
+          "wy": 1982,
+          "prcp_mm": 1139.8,
+          "api_start_mm": 23.4,
+          "swe_start_mm": 0.0,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 5.42,
+          "lag_snowpath_d": 1.02,
+          "lag_bucket_d": 4.4
+        },
+        {
+          "wy": 1983,
+          "prcp_mm": 1258.7,
+          "api_start_mm": 33.3,
+          "swe_start_mm": 0.0,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 1.32,
+          "lag_snowpath_d": 0.79,
+          "lag_bucket_d": 0.52
+        },
+        {
+          "wy": 1984,
+          "prcp_mm": 1608.9,
+          "api_start_mm": 60.1,
+          "swe_start_mm": 0.0,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 4.23,
+          "lag_snowpath_d": 0.54,
+          "lag_bucket_d": 3.69
+        },
+        {
+          "wy": 1985,
+          "prcp_mm": 907.9,
+          "api_start_mm": 48.2,
+          "swe_start_mm": 0.0,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": -6.48,
+          "lag_snowpath_d": 1.35,
+          "lag_bucket_d": -7.84
+        },
+        {
+          "wy": 1986,
+          "prcp_mm": 1053.3,
+          "api_start_mm": 67.1,
+          "swe_start_mm": 0.0,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": -3.85,
+          "lag_snowpath_d": 0.25,
+          "lag_bucket_d": -4.1
+        },
+        {
+          "wy": 1987,
+          "prcp_mm": 1525.6,
+          "api_start_mm": 34.3,
+          "swe_start_mm": 0.0,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 7.0,
+          "lag_snowpath_d": 2.0,
+          "lag_bucket_d": 5.0
+        },
+        {
+          "wy": 1988,
+          "prcp_mm": 1037.3,
+          "api_start_mm": 37.6,
+          "swe_start_mm": 0.0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 2.87,
+          "lag_snowpath_d": 0.52,
+          "lag_bucket_d": 2.35
+        },
+        {
+          "wy": 1989,
+          "prcp_mm": 1565.1,
+          "api_start_mm": 26.5,
+          "swe_start_mm": 0.0,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 1.05,
+          "lag_snowpath_d": 0.15,
+          "lag_bucket_d": 0.9
+        },
+        {
+          "wy": 1990,
+          "prcp_mm": 1194.0,
+          "api_start_mm": 85.9,
+          "swe_start_mm": 0.0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": -4.24,
+          "lag_snowpath_d": 0.41,
+          "lag_bucket_d": -4.65
+        },
+        {
+          "wy": 1991,
+          "prcp_mm": 1293.7,
+          "api_start_mm": 30.6,
+          "swe_start_mm": 0.0,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 1.77,
+          "lag_snowpath_d": 0.16,
+          "lag_bucket_d": 1.61
+        },
+        {
+          "wy": 1992,
+          "prcp_mm": 1064.3,
+          "api_start_mm": 52.6,
+          "swe_start_mm": 0.0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": -7.92,
+          "lag_snowpath_d": 0.07,
+          "lag_bucket_d": -7.99
+        },
+        {
+          "wy": 1993,
+          "prcp_mm": 1306.3,
+          "api_start_mm": 68.9,
+          "swe_start_mm": 0.0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": -6.1,
+          "lag_snowpath_d": 0.19,
+          "lag_bucket_d": -6.29
+        },
+        {
+          "wy": 1994,
+          "prcp_mm": 1426.2,
+          "api_start_mm": 68.1,
+          "swe_start_mm": 0.0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 1.14,
+          "lag_snowpath_d": 3.27,
+          "lag_bucket_d": -2.12
+        },
+        {
+          "wy": 1995,
+          "prcp_mm": 879.5,
+          "api_start_mm": 52.0,
+          "swe_start_mm": 0.0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": -8.65,
+          "lag_snowpath_d": 0.53,
+          "lag_bucket_d": -9.19
+        },
+        {
+          "wy": 1996,
+          "prcp_mm": 1668.5,
+          "api_start_mm": 53.1,
+          "swe_start_mm": 0.0,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 0.98,
+          "lag_snowpath_d": 1.34,
+          "lag_bucket_d": -0.36
+        },
+        {
+          "wy": 1997,
+          "prcp_mm": 1281.1,
+          "api_start_mm": 69.9,
+          "swe_start_mm": 0.0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": -1.53,
+          "lag_snowpath_d": 0.2,
+          "lag_bucket_d": -1.74
+        },
+        {
+          "wy": 1998,
+          "prcp_mm": 1362.0,
+          "api_start_mm": 38.7,
+          "swe_start_mm": 0.0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 7.41,
+          "lag_snowpath_d": 0.09,
+          "lag_bucket_d": 7.32
+        },
+        {
+          "wy": 1999,
+          "prcp_mm": 1266.4,
+          "api_start_mm": 18.7,
+          "swe_start_mm": 0.0,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": -0.1,
+          "lag_snowpath_d": 0.32,
+          "lag_bucket_d": -0.42
+        }
+      ]
+    },
+    "02177000": {
+      "gauge": "02177000",
+      "frac_snow": 0.018,
+      "study_period": {
+        "amc_state_memory_days": {
+          "mean": 2.05,
+          "sd": 5.76,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.2,
+          "sd": 0.18,
+          "n": 19
+        },
+        "bucket_lag_days": {
+          "mean": 1.85,
+          "sd": 5.84,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "amc_state_memory_days": {
+          "mean": -0.71,
+          "sd": 2.09,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.31,
+          "sd": 0.4,
+          "n": 2
+        },
+        "bucket_lag_days": {
+          "mean": -1.02,
+          "sd": 2.49,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "exceeds_30d_window": false,
+      "api_acf_efold_days": 16,
+      "api_start_mm_max": 240.0,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "prcp_mm": 1314.7,
+          "api_start_mm": 148.8,
+          "swe_start_mm": 0.0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": -8.03,
+          "lag_snowpath_d": 0.49,
+          "lag_bucket_d": -8.52
+        },
+        {
+          "wy": 1982,
+          "prcp_mm": 1949.7,
+          "api_start_mm": 24.3,
+          "swe_start_mm": 0.0,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 8.99,
+          "lag_snowpath_d": 0.19,
+          "lag_bucket_d": 8.79
+        },
+        {
+          "wy": 1983,
+          "prcp_mm": 2060.1,
+          "api_start_mm": 29.9,
+          "swe_start_mm": 0.0,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 6.06,
+          "lag_snowpath_d": 0.1,
+          "lag_bucket_d": 5.96
+        },
+        {
+          "wy": 1984,
+          "prcp_mm": 2227.2,
+          "api_start_mm": 53.9,
+          "swe_start_mm": 0.0,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 8.85,
+          "lag_snowpath_d": 0.06,
+          "lag_bucket_d": 8.8
+        },
+        {
+          "wy": 1985,
+          "prcp_mm": 1530.7,
+          "api_start_mm": 16.7,
+          "swe_start_mm": 0.0,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 10.59,
+          "lag_snowpath_d": 0.32,
+          "lag_bucket_d": 10.27
+        },
+        {
+          "wy": 1986,
+          "prcp_mm": 1240.0,
+          "api_start_mm": 19.4,
+          "swe_start_mm": 0.0,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 8.01,
+          "lag_snowpath_d": 0.05,
+          "lag_bucket_d": 7.96
+        },
+        {
+          "wy": 1987,
+          "prcp_mm": 2085.5,
+          "api_start_mm": 20.5,
+          "swe_start_mm": 0.0,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 5.35,
+          "lag_snowpath_d": 0.19,
+          "lag_bucket_d": 5.16
+        },
+        {
+          "wy": 1988,
+          "prcp_mm": 1324.3,
+          "api_start_mm": 68.6,
+          "swe_start_mm": 0.0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": -0.87,
+          "lag_snowpath_d": 0.45,
+          "lag_bucket_d": -1.31
+        },
+        {
+          "wy": 1989,
+          "prcp_mm": 2260.0,
+          "api_start_mm": 38.0,
+          "swe_start_mm": 0.0,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": -2.56,
+          "lag_snowpath_d": 0.04,
+          "lag_bucket_d": -2.6
+        },
+        {
+          "wy": 1990,
+          "prcp_mm": 1997.7,
+          "api_start_mm": 240.0,
+          "swe_start_mm": 0.0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": -4.36,
+          "lag_snowpath_d": 0.06,
+          "lag_bucket_d": -4.42
+        },
+        {
+          "wy": 1991,
+          "prcp_mm": 2299.2,
+          "api_start_mm": 47.8,
+          "swe_start_mm": 0.0,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 6.06,
+          "lag_snowpath_d": 0.02,
+          "lag_bucket_d": 6.04
+        },
+        {
+          "wy": 1992,
+          "prcp_mm": 1946.4,
+          "api_start_mm": 48.8,
+          "swe_start_mm": 0.0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 0.62,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 0.62
+        },
+        {
+          "wy": 1993,
+          "prcp_mm": 2010.8,
+          "api_start_mm": 89.4,
+          "swe_start_mm": 0.0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 3.42,
+          "lag_snowpath_d": 0.22,
+          "lag_bucket_d": 3.2
+        },
+        {
+          "wy": 1994,
+          "prcp_mm": 2278.6,
+          "api_start_mm": 38.5,
+          "swe_start_mm": 0.0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 5.51,
+          "lag_snowpath_d": 0.23,
+          "lag_bucket_d": 5.28
+        },
+        {
+          "wy": 1995,
+          "prcp_mm": 1981.4,
+          "api_start_mm": 68.1,
+          "swe_start_mm": 0.0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 3.7,
+          "lag_snowpath_d": 0.03,
+          "lag_bucket_d": 3.67
+        },
+        {
+          "wy": 1996,
+          "prcp_mm": 2364.8,
+          "api_start_mm": 40.7,
+          "swe_start_mm": 0.0,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": -1.82,
+          "lag_snowpath_d": 0.39,
+          "lag_bucket_d": -2.21
+        },
+        {
+          "wy": 1997,
+          "prcp_mm": 2048.5,
+          "api_start_mm": 153.6,
+          "swe_start_mm": 0.0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": -9.2,
+          "lag_snowpath_d": 0.37,
+          "lag_bucket_d": -9.58
+        },
+        {
+          "wy": 1998,
+          "prcp_mm": 2082.4,
+          "api_start_mm": 107.5,
+          "swe_start_mm": 0.0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 0.77,
+          "lag_snowpath_d": 0.03,
+          "lag_bucket_d": 0.74
+        },
+        {
+          "wy": 1999,
+          "prcp_mm": 1744.9,
+          "api_start_mm": 50.2,
+          "swe_start_mm": 0.0,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": -2.19,
+          "lag_snowpath_d": 0.59,
+          "lag_bucket_d": -2.78
+        }
+      ]
+    },
+    "07067000": {
+      "gauge": "07067000",
+      "frac_snow": 0.043,
+      "study_period": {
+        "amc_state_memory_days": {
+          "mean": 1.71,
+          "sd": 6.38,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.45,
+          "sd": 0.47,
+          "n": 19
+        },
+        "bucket_lag_days": {
+          "mean": 1.26,
+          "sd": 6.33,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "amc_state_memory_days": {
+          "mean": 6.91,
+          "sd": 2.86,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.46,
+          "sd": 0.5,
+          "n": 2
+        },
+        "bucket_lag_days": {
+          "mean": 6.45,
+          "sd": 2.36,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "exceeds_30d_window": false,
+      "api_acf_efold_days": 18,
+      "api_start_mm_max": 136.8,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "prcp_mm": 1113.5,
+          "api_start_mm": 36.9,
+          "swe_start_mm": 0.0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 5.24,
+          "lag_snowpath_d": 0.58,
+          "lag_bucket_d": 4.66
+        },
+        {
+          "wy": 1982,
+          "prcp_mm": 1445.5,
+          "api_start_mm": 15.2,
+          "swe_start_mm": 0.0,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 7.89,
+          "lag_snowpath_d": 0.52,
+          "lag_bucket_d": 7.37
+        },
+        {
+          "wy": 1983,
+          "prcp_mm": 1371.3,
+          "api_start_mm": 35.9,
+          "swe_start_mm": 0.0,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 6.61,
+          "lag_snowpath_d": 0.07,
+          "lag_bucket_d": 6.54
+        },
+        {
+          "wy": 1984,
+          "prcp_mm": 1318.6,
+          "api_start_mm": 21.6,
+          "swe_start_mm": 0.0,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": -2.43,
+          "lag_snowpath_d": 0.18,
+          "lag_bucket_d": -2.61
+        },
+        {
+          "wy": 1985,
+          "prcp_mm": 1604.8,
+          "api_start_mm": 82.4,
+          "swe_start_mm": 0.0,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 4.16,
+          "lag_snowpath_d": 1.01,
+          "lag_bucket_d": 3.14
+        },
+        {
+          "wy": 1986,
+          "prcp_mm": 1158.2,
+          "api_start_mm": 23.1,
+          "swe_start_mm": 0.0,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 6.29,
+          "lag_snowpath_d": 0.12,
+          "lag_bucket_d": 6.17
+        },
+        {
+          "wy": 1987,
+          "prcp_mm": 1009.9,
+          "api_start_mm": 65.4,
+          "swe_start_mm": 0.0,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 4.55,
+          "lag_snowpath_d": 0.28,
+          "lag_bucket_d": 4.27
+        },
+        {
+          "wy": 1988,
+          "prcp_mm": 1322.8,
+          "api_start_mm": 26.9,
+          "swe_start_mm": 0.0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 2.94,
+          "lag_snowpath_d": 0.32,
+          "lag_bucket_d": 2.62
+        },
+        {
+          "wy": 1989,
+          "prcp_mm": 1396.8,
+          "api_start_mm": 94.0,
+          "swe_start_mm": 0.0,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 3.9,
+          "lag_snowpath_d": 0.57,
+          "lag_bucket_d": 3.33
+        },
+        {
+          "wy": 1990,
+          "prcp_mm": 1241.3,
+          "api_start_mm": 31.5,
+          "swe_start_mm": 0.0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 2.59,
+          "lag_snowpath_d": 0.06,
+          "lag_bucket_d": 2.52
+        },
+        {
+          "wy": 1991,
+          "prcp_mm": 1381.0,
+          "api_start_mm": 47.1,
+          "swe_start_mm": 0.0,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 5.78,
+          "lag_snowpath_d": 2.06,
+          "lag_bucket_d": 3.72
+        },
+        {
+          "wy": 1992,
+          "prcp_mm": 1449.9,
+          "api_start_mm": 31.0,
+          "swe_start_mm": 0.0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 1.15,
+          "lag_snowpath_d": 0.13,
+          "lag_bucket_d": 1.02
+        },
+        {
+          "wy": 1993,
+          "prcp_mm": 1467.4,
+          "api_start_mm": 64.8,
+          "swe_start_mm": 0.0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": -12.63,
+          "lag_snowpath_d": 0.55,
+          "lag_bucket_d": -13.18
+        },
+        {
+          "wy": 1994,
+          "prcp_mm": 1378.8,
+          "api_start_mm": 136.8,
+          "swe_start_mm": 0.0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": -6.68,
+          "lag_snowpath_d": 0.38,
+          "lag_bucket_d": -7.06
+        },
+        {
+          "wy": 1995,
+          "prcp_mm": 1394.7,
+          "api_start_mm": 29.6,
+          "swe_start_mm": 0.0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 6.69,
+          "lag_snowpath_d": 0.15,
+          "lag_bucket_d": 6.55
+        },
+        {
+          "wy": 1996,
+          "prcp_mm": 1228.5,
+          "api_start_mm": 25.7,
+          "swe_start_mm": 0.0,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": -8.04,
+          "lag_snowpath_d": 0.28,
+          "lag_bucket_d": -8.32
+        },
+        {
+          "wy": 1997,
+          "prcp_mm": 1160.0,
+          "api_start_mm": 120.1,
+          "swe_start_mm": 0.0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": -9.38,
+          "lag_snowpath_d": 0.38,
+          "lag_bucket_d": -9.76
+        },
+        {
+          "wy": 1998,
+          "prcp_mm": 1164.8,
+          "api_start_mm": 39.1,
+          "swe_start_mm": 0.0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 4.89,
+          "lag_snowpath_d": 0.11,
+          "lag_bucket_d": 4.78
+        },
+        {
+          "wy": 1999,
+          "prcp_mm": 889.6,
+          "api_start_mm": 19.4,
+          "swe_start_mm": 0.0,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 8.94,
+          "lag_snowpath_d": 0.82,
+          "lag_bucket_d": 8.12
+        }
+      ]
+    },
+    "08202700": {
+      "gauge": "08202700",
+      "frac_snow": 0.003,
+      "study_period": {
+        "amc_state_memory_days": {
+          "mean": 0.26,
+          "sd": 9.29,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.01,
+          "sd": 0.04,
+          "n": 19
+        },
+        "bucket_lag_days": {
+          "mean": 0.24,
+          "sd": 9.3,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "amc_state_memory_days": {
+          "mean": 8.89,
+          "sd": 0.27,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "n": 2
+        },
+        "bucket_lag_days": {
+          "mean": 8.89,
+          "sd": 0.27,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "exceeds_30d_window": false,
+      "api_acf_efold_days": 19,
+      "api_start_mm_max": 85.6,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "prcp_mm": 893.2,
+          "api_start_mm": 69.6,
+          "swe_start_mm": 0.0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": -4.32,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": -4.32
+        },
+        {
+          "wy": 1982,
+          "prcp_mm": 630.8,
+          "api_start_mm": 14.8,
+          "swe_start_mm": 0.0,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 2.71,
+          "lag_snowpath_d": 0.02,
+          "lag_bucket_d": 2.7
+        },
+        {
+          "wy": 1983,
+          "prcp_mm": 651.0,
+          "api_start_mm": 21.3,
+          "swe_start_mm": 0.0,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 3.42,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 3.42
+        },
+        {
+          "wy": 1984,
+          "prcp_mm": 357.9,
+          "api_start_mm": 14.7,
+          "swe_start_mm": 0.0,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 1.43,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 1.43
+        },
+        {
+          "wy": 1985,
+          "prcp_mm": 926.1,
+          "api_start_mm": 9.9,
+          "swe_start_mm": 0.0,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": -7.43,
+          "lag_snowpath_d": 0.16,
+          "lag_bucket_d": -7.6
+        },
+        {
+          "wy": 1986,
+          "prcp_mm": 687.1,
+          "api_start_mm": 76.6,
+          "swe_start_mm": 0.0,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": -9.99,
+          "lag_snowpath_d": 0.01,
+          "lag_bucket_d": -10.0
+        },
+        {
+          "wy": 1987,
+          "prcp_mm": 1431.8,
+          "api_start_mm": 16.0,
+          "swe_start_mm": 0.0,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 10.69,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 10.69
+        },
+        {
+          "wy": 1988,
+          "prcp_mm": 566.9,
+          "api_start_mm": 10.9,
+          "swe_start_mm": 0.0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 0.09,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 0.09
+        },
+        {
+          "wy": 1989,
+          "prcp_mm": 403.9,
+          "api_start_mm": 31.3,
+          "swe_start_mm": 0.0,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 0.21,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 0.21
+        },
+        {
+          "wy": 1990,
+          "prcp_mm": 858.5,
+          "api_start_mm": 1.4,
+          "swe_start_mm": 0.0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 9.0,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 9.0
+        },
+        {
+          "wy": 1991,
+          "prcp_mm": 827.6,
+          "api_start_mm": 24.2,
+          "swe_start_mm": 0.0,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": -9.92,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": -9.92
+        },
+        {
+          "wy": 1992,
+          "prcp_mm": 1275.7,
+          "api_start_mm": 85.6,
+          "swe_start_mm": 0.0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 1.81,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 1.81
+        },
+        {
+          "wy": 1993,
+          "prcp_mm": 661.9,
+          "api_start_mm": 7.0,
+          "swe_start_mm": 0.0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 7.89,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 7.89
+        },
+        {
+          "wy": 1994,
+          "prcp_mm": 598.6,
+          "api_start_mm": 13.9,
+          "swe_start_mm": 0.0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 5.3,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 5.3
+        },
+        {
+          "wy": 1995,
+          "prcp_mm": 886.7,
+          "api_start_mm": 13.5,
+          "swe_start_mm": 0.0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": -5.22,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": -5.22
+        },
+        {
+          "wy": 1996,
+          "prcp_mm": 470.3,
+          "api_start_mm": 72.4,
+          "swe_start_mm": 0.0,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": -26.84,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": -26.84
+        },
+        {
+          "wy": 1997,
+          "prcp_mm": 995.7,
+          "api_start_mm": 27.4,
+          "swe_start_mm": 0.0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 8.25,
+          "lag_snowpath_d": 0.03,
+          "lag_bucket_d": 8.22
+        },
+        {
+          "wy": 1998,
+          "prcp_mm": 909.1,
+          "api_start_mm": 4.3,
+          "swe_start_mm": 0.0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 8.7,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 8.7
+        },
+        {
+          "wy": 1999,
+          "prcp_mm": 761.6,
+          "api_start_mm": 23.1,
+          "swe_start_mm": 0.0,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 9.08,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 9.08
+        }
+      ]
+    },
+    "09210500": {
+      "gauge": "09210500",
+      "frac_snow": 0.597,
+      "study_period": {
+        "amc_state_memory_days": {
+          "mean": 56.59,
+          "sd": 14.75,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 51.38,
+          "sd": 14.81,
+          "n": 19
+        },
+        "bucket_lag_days": {
+          "mean": 5.22,
+          "sd": 6.41,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "amc_state_memory_days": {
+          "mean": 56.21,
+          "sd": 8.26,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 47.7,
+          "sd": 5.86,
+          "n": 2
+        },
+        "bucket_lag_days": {
+          "mean": 8.5,
+          "sd": 2.4,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "exceeds_30d_window": true,
+      "api_acf_efold_days": 29,
+      "api_start_mm_max": 63.3,
+      "swe_start_mm_max": 33.8,
+      "water_years": [
+        {
+          "wy": 1981,
+          "prcp_mm": 263.3,
+          "api_start_mm": 9.5,
+          "swe_start_mm": 0.0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 35.23,
+          "lag_snowpath_d": 28.14,
+          "lag_bucket_d": 7.09
+        },
+        {
+          "wy": 1982,
+          "prcp_mm": 764.4,
+          "api_start_mm": 0.6,
+          "swe_start_mm": 0.0,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 50.91,
+          "lag_snowpath_d": 50.26,
+          "lag_bucket_d": 0.66
+        },
+        {
+          "wy": 1983,
+          "prcp_mm": 695.9,
+          "api_start_mm": 63.3,
+          "swe_start_mm": 33.8,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 38.74,
+          "lag_snowpath_d": 48.81,
+          "lag_bucket_d": -10.07
+        },
+        {
+          "wy": 1984,
+          "prcp_mm": 702.2,
+          "api_start_mm": 22.4,
+          "swe_start_mm": 0.0,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 74.04,
+          "lag_snowpath_d": 74.09,
+          "lag_bucket_d": -0.06
+        },
+        {
+          "wy": 1985,
+          "prcp_mm": 427.2,
+          "api_start_mm": 35.9,
+          "swe_start_mm": 0.0,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 65.15,
+          "lag_snowpath_d": 76.33,
+          "lag_bucket_d": -11.18
+        },
+        {
+          "wy": 1986,
+          "prcp_mm": 803.7,
+          "api_start_mm": 18.2,
+          "swe_start_mm": 0.0,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 64.39,
+          "lag_snowpath_d": 58.11,
+          "lag_bucket_d": 6.28
+        },
+        {
+          "wy": 1987,
+          "prcp_mm": 440.2,
+          "api_start_mm": 13.5,
+          "swe_start_mm": 27.9,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 33.37,
+          "lag_snowpath_d": 26.58,
+          "lag_bucket_d": 6.79
+        },
+        {
+          "wy": 1988,
+          "prcp_mm": 363.7,
+          "api_start_mm": 3.5,
+          "swe_start_mm": 0.0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 67.3,
+          "lag_snowpath_d": 56.29,
+          "lag_bucket_d": 11.01
+        },
+        {
+          "wy": 1989,
+          "prcp_mm": 533.0,
+          "api_start_mm": 2.6,
+          "swe_start_mm": 0.0,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 57.72,
+          "lag_snowpath_d": 49.57,
+          "lag_bucket_d": 8.15
+        },
+        {
+          "wy": 1990,
+          "prcp_mm": 444.4,
+          "api_start_mm": 16.3,
+          "swe_start_mm": 0.0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 37.62,
+          "lag_snowpath_d": 34.57,
+          "lag_bucket_d": 3.05
+        },
+        {
+          "wy": 1991,
+          "prcp_mm": 514.8,
+          "api_start_mm": 9.4,
+          "swe_start_mm": 0.0,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 45.63,
+          "lag_snowpath_d": 38.92,
+          "lag_bucket_d": 6.71
+        },
+        {
+          "wy": 1992,
+          "prcp_mm": 400.4,
+          "api_start_mm": 10.6,
+          "swe_start_mm": 0.0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 67.84,
+          "lag_snowpath_d": 61.31,
+          "lag_bucket_d": 6.53
+        },
+        {
+          "wy": 1993,
+          "prcp_mm": 634.4,
+          "api_start_mm": 5.1,
+          "swe_start_mm": 0.0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 73.51,
+          "lag_snowpath_d": 62.08,
+          "lag_bucket_d": 11.43
+        },
+        {
+          "wy": 1994,
+          "prcp_mm": 326.2,
+          "api_start_mm": 3.9,
+          "swe_start_mm": 0.0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 46.52,
+          "lag_snowpath_d": 39.99,
+          "lag_bucket_d": 6.53
+        },
+        {
+          "wy": 1995,
+          "prcp_mm": 644.9,
+          "api_start_mm": 9.4,
+          "swe_start_mm": 0.0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 55.29,
+          "lag_snowpath_d": 45.46,
+          "lag_bucket_d": 9.83
+        },
+        {
+          "wy": 1996,
+          "prcp_mm": 564.8,
+          "api_start_mm": 4.7,
+          "swe_start_mm": 0.0,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 62.86,
+          "lag_snowpath_d": 52.48,
+          "lag_bucket_d": 10.38
+        },
+        {
+          "wy": 1997,
+          "prcp_mm": 721.6,
+          "api_start_mm": 6.5,
+          "swe_start_mm": 0.0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 86.76,
+          "lag_snowpath_d": 77.76,
+          "lag_bucket_d": 9.0
+        },
+        {
+          "wy": 1998,
+          "prcp_mm": 584.3,
+          "api_start_mm": 14.5,
+          "swe_start_mm": 0.0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 50.37,
+          "lag_snowpath_d": 43.56,
+          "lag_bucket_d": 6.81
+        },
+        {
+          "wy": 1999,
+          "prcp_mm": 676.7,
+          "api_start_mm": 8.6,
+          "swe_start_mm": 0.0,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 62.05,
+          "lag_snowpath_d": 51.85,
+          "lag_bucket_d": 10.2
+        }
+      ]
+    },
+    "09352900": {
+      "gauge": "09352900",
+      "frac_snow": 0.606,
+      "study_period": {
+        "amc_state_memory_days": {
+          "mean": 61.52,
+          "sd": 20.59,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 62.2,
+          "sd": 19.61,
+          "n": 19
+        },
+        "bucket_lag_days": {
+          "mean": -0.68,
+          "sd": 5.23,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "amc_state_memory_days": {
+          "mean": 54.36,
+          "sd": 6.8,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 54.92,
+          "sd": 2.96,
+          "n": 2
+        },
+        "bucket_lag_days": {
+          "mean": -0.56,
+          "sd": 9.77,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "exceeds_30d_window": true,
+      "api_acf_efold_days": 36,
+      "api_start_mm_max": 88.7,
+      "swe_start_mm_max": 39.7,
+      "water_years": [
+        {
+          "wy": 1981,
+          "prcp_mm": 950.3,
+          "api_start_mm": 23.3,
+          "swe_start_mm": 0.0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 36.65,
+          "lag_snowpath_d": 33.21,
+          "lag_bucket_d": 3.44
+        },
+        {
+          "wy": 1982,
+          "prcp_mm": 1188.2,
+          "api_start_mm": 32.1,
+          "swe_start_mm": 0.0,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 65.52,
+          "lag_snowpath_d": 65.37,
+          "lag_bucket_d": 0.16
+        },
+        {
+          "wy": 1983,
+          "prcp_mm": 975.3,
+          "api_start_mm": 63.9,
+          "swe_start_mm": 2.5,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 90.49,
+          "lag_snowpath_d": 99.62,
+          "lag_bucket_d": -9.13
+        },
+        {
+          "wy": 1984,
+          "prcp_mm": 1126.6,
+          "api_start_mm": 48.0,
+          "swe_start_mm": 12.2,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 75.07,
+          "lag_snowpath_d": 75.32,
+          "lag_bucket_d": -0.25
+        },
+        {
+          "wy": 1985,
+          "prcp_mm": 1304.5,
+          "api_start_mm": 32.8,
+          "swe_start_mm": 7.9,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 87.97,
+          "lag_snowpath_d": 87.45,
+          "lag_bucket_d": 0.52
+        },
+        {
+          "wy": 1986,
+          "prcp_mm": 1304.1,
+          "api_start_mm": 74.8,
+          "swe_start_mm": 13.9,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 49.14,
+          "lag_snowpath_d": 54.58,
+          "lag_bucket_d": -5.44
+        },
+        {
+          "wy": 1987,
+          "prcp_mm": 977.2,
+          "api_start_mm": 58.9,
+          "swe_start_mm": 39.7,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 71.41,
+          "lag_snowpath_d": 71.74,
+          "lag_bucket_d": -0.33
+        },
+        {
+          "wy": 1988,
+          "prcp_mm": 940.0,
+          "api_start_mm": 18.3,
+          "swe_start_mm": 0.0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 50.13,
+          "lag_snowpath_d": 46.68,
+          "lag_bucket_d": 3.45
+        },
+        {
+          "wy": 1989,
+          "prcp_mm": 823.5,
+          "api_start_mm": 38.4,
+          "swe_start_mm": 0.0,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 71.24,
+          "lag_snowpath_d": 72.7,
+          "lag_bucket_d": -1.46
+        },
+        {
+          "wy": 1990,
+          "prcp_mm": 1080.3,
+          "api_start_mm": 24.5,
+          "swe_start_mm": 0.0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 29.41,
+          "lag_snowpath_d": 32.25,
+          "lag_bucket_d": -2.84
+        },
+        {
+          "wy": 1991,
+          "prcp_mm": 930.5,
+          "api_start_mm": 88.7,
+          "swe_start_mm": 0.0,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 34.82,
+          "lag_snowpath_d": 47.73,
+          "lag_bucket_d": -12.91
+        },
+        {
+          "wy": 1992,
+          "prcp_mm": 917.2,
+          "api_start_mm": 30.5,
+          "swe_start_mm": 0.0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 61.33,
+          "lag_snowpath_d": 58.74,
+          "lag_bucket_d": 2.59
+        },
+        {
+          "wy": 1993,
+          "prcp_mm": 1040.9,
+          "api_start_mm": 21.6,
+          "swe_start_mm": 0.0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 97.9,
+          "lag_snowpath_d": 91.63,
+          "lag_bucket_d": 6.27
+        },
+        {
+          "wy": 1994,
+          "prcp_mm": 863.6,
+          "api_start_mm": 20.5,
+          "swe_start_mm": 0.0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 52.63,
+          "lag_snowpath_d": 49.22,
+          "lag_bucket_d": 3.41
+        },
+        {
+          "wy": 1995,
+          "prcp_mm": 1156.5,
+          "api_start_mm": 29.1,
+          "swe_start_mm": 0.0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 85.66,
+          "lag_snowpath_d": 81.74,
+          "lag_bucket_d": 3.93
+        },
+        {
+          "wy": 1996,
+          "prcp_mm": 655.7,
+          "api_start_mm": 37.7,
+          "swe_start_mm": 9.3,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 32.01,
+          "lag_snowpath_d": 36.15,
+          "lag_bucket_d": -4.14
+        },
+        {
+          "wy": 1997,
+          "prcp_mm": 1256.4,
+          "api_start_mm": 30.5,
+          "swe_start_mm": 0.0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 68.72,
+          "lag_snowpath_d": 67.83,
+          "lag_bucket_d": 0.88
+        },
+        {
+          "wy": 1998,
+          "prcp_mm": 812.1,
+          "api_start_mm": 62.9,
+          "swe_start_mm": 0.0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 49.55,
+          "lag_snowpath_d": 57.02,
+          "lag_bucket_d": -7.47
+        },
+        {
+          "wy": 1999,
+          "prcp_mm": 1230.3,
+          "api_start_mm": 22.0,
+          "swe_start_mm": 4.6,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 59.17,
+          "lag_snowpath_d": 52.83,
+          "lag_bucket_d": 6.34
+        }
+      ]
+    },
+    "09512280": {
+      "gauge": "09512280",
+      "frac_snow": 0.003,
+      "study_period": {
+        "amc_state_memory_days": {
+          "mean": -2.88,
+          "sd": 13.24,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.05,
+          "sd": 0.11,
+          "n": 19
+        },
+        "bucket_lag_days": {
+          "mean": -2.93,
+          "sd": 13.23,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "amc_state_memory_days": {
+          "mean": -1.61,
+          "sd": 3.51,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.01,
+          "sd": 0.01,
+          "n": 2
+        },
+        "bucket_lag_days": {
+          "mean": -1.62,
+          "sd": 3.52,
+          "n": 2
+        },
+        "start": "1997-02-10",
+        "end": "1999-12-31"
+      },
+      "exceeds_30d_window": false,
+      "api_acf_efold_days": 23,
+      "api_start_mm_max": 78.5,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "prcp_mm": 316.2,
+          "api_start_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 6.08,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 6.08
+        },
+        {
+          "wy": 1982,
+          "prcp_mm": 672.0,
+          "api_start_mm": 30.7,
+          "swe_start_mm": 0.0,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 5.33,
+          "lag_snowpath_d": 0.03,
+          "lag_bucket_d": 5.29
+        },
+        {
+          "wy": 1983,
+          "prcp_mm": 899.4,
+          "api_start_mm": 16.5,
+          "swe_start_mm": 0.0,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": -6.44,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": -6.45
+        },
+        {
+          "wy": 1984,
+          "prcp_mm": 417.9,
+          "api_start_mm": 78.5,
+          "swe_start_mm": 0.0,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": -40.43,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": -40.43
+        },
+        {
+          "wy": 1985,
+          "prcp_mm": 552.2,
+          "api_start_mm": 50.6,
+          "swe_start_mm": 0.0,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": -6.48,
+          "lag_snowpath_d": 0.16,
+          "lag_bucket_d": -6.64
+        },
+        {
+          "wy": 1986,
+          "prcp_mm": 539.9,
+          "api_start_mm": 17.6,
+          "swe_start_mm": 0.0,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": -0.94,
+          "lag_snowpath_d": 0.04,
+          "lag_bucket_d": -0.98
+        },
+        {
+          "wy": 1987,
+          "prcp_mm": 396.1,
+          "api_start_mm": 24.2,
+          "swe_start_mm": 0.0,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": -3.41,
+          "lag_snowpath_d": 0.22,
+          "lag_bucket_d": -3.63
+        },
+        {
+          "wy": 1988,
+          "prcp_mm": 555.1,
+          "api_start_mm": 13.7,
+          "swe_start_mm": 0.0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 6.45,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 6.45
+        },
+        {
+          "wy": 1989,
+          "prcp_mm": 370.6,
+          "api_start_mm": 9.0,
+          "swe_start_mm": 0.0,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 7.86,
+          "lag_snowpath_d": 0.01,
+          "lag_bucket_d": 7.85
+        },
+        {
+          "wy": 1990,
+          "prcp_mm": 481.1,
+          "api_start_mm": 3.9,
+          "swe_start_mm": 0.0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 4.84,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 4.84
+        },
+        {
+          "wy": 1991,
+          "prcp_mm": 447.2,
+          "api_start_mm": 22.3,
+          "swe_start_mm": 0.0,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 2.67,
+          "lag_snowpath_d": 0.45,
+          "lag_bucket_d": 2.22
+        },
+        {
+          "wy": 1992,
+          "prcp_mm": 824.6,
+          "api_start_mm": 7.6,
+          "swe_start_mm": 0.0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 10.09,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 10.09
+        },
+        {
+          "wy": 1993,
+          "prcp_mm": 788.6,
+          "api_start_mm": 10.0,
+          "swe_start_mm": 0.0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 9.49,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 9.49
+        },
+        {
+          "wy": 1994,
+          "prcp_mm": 373.1,
+          "api_start_mm": 9.4,
+          "swe_start_mm": 0.0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 5.45,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 5.45
+        },
+        {
+          "wy": 1995,
+          "prcp_mm": 583.4,
+          "api_start_mm": 7.8,
+          "swe_start_mm": 0.0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": -4.9,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": -4.9
+        },
+        {
+          "wy": 1996,
+          "prcp_mm": 308.9,
+          "api_start_mm": 41.4,
+          "swe_start_mm": 0.0,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": -25.93,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": -25.93
+        },
+        {
+          "wy": 1997,
+          "prcp_mm": 247.8,
+          "api_start_mm": 20.5,
+          "swe_start_mm": 0.0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": -21.19,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": -21.19
+        },
+        {
+          "wy": 1998,
+          "prcp_mm": 461.8,
+          "api_start_mm": 23.9,
+          "swe_start_mm": 0.0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 0.87,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 0.87
+        },
+        {
+          "wy": 1999,
+          "prcp_mm": 395.7,
+          "api_start_mm": 10.2,
+          "swe_start_mm": 0.0,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": -4.1,
+          "lag_snowpath_d": 0.01,
+          "lag_bucket_d": -4.11
+        }
+      ]
+    },
+    "11143000": {
+      "gauge": "11143000",
+      "frac_snow": 0.01,
+      "study_period": {
+        "amc_state_memory_days": {
+          "mean": 11.88,
+          "sd": 2.82,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.06,
+          "sd": 0.11,
+          "n": 19
+        },
+        "bucket_lag_days": {
+          "mean": 11.83,
+          "sd": 2.88,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "amc_state_memory_days": {
+          "mean": 13.75,
+          "sd": 0.45,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.02,
+          "sd": 0.03,
+          "n": 2
+        },
+        "bucket_lag_days": {
+          "mean": 13.73,
+          "sd": 0.47,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "exceeds_30d_window": false,
+      "api_acf_efold_days": 46,
+      "api_start_mm_max": 59.1,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "prcp_mm": 649.5,
+          "api_start_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 14.28,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 14.28
+        },
+        {
+          "wy": 1982,
+          "prcp_mm": 1334.7,
+          "api_start_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 9.05,
+          "lag_snowpath_d": 0.27,
+          "lag_bucket_d": 8.78
+        },
+        {
+          "wy": 1983,
+          "prcp_mm": 1918.3,
+          "api_start_mm": 27.8,
+          "swe_start_mm": 0.0,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 7.1,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 7.1
+        },
+        {
+          "wy": 1984,
+          "prcp_mm": 741.0,
+          "api_start_mm": 59.1,
+          "swe_start_mm": 0.0,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 9.98,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 9.98
+        },
+        {
+          "wy": 1985,
+          "prcp_mm": 713.2,
+          "api_start_mm": 3.5,
+          "swe_start_mm": 0.0,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 13.39,
+          "lag_snowpath_d": 0.05,
+          "lag_bucket_d": 13.35
+        },
+        {
+          "wy": 1986,
+          "prcp_mm": 1208.7,
+          "api_start_mm": 2.3,
+          "swe_start_mm": 0.0,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 10.17,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 10.17
+        },
+        {
+          "wy": 1987,
+          "prcp_mm": 507.2,
+          "api_start_mm": 17.8,
+          "swe_start_mm": 0.0,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 9.42,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 9.42
+        },
+        {
+          "wy": 1988,
+          "prcp_mm": 635.2,
+          "api_start_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 14.28,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 14.28
+        },
+        {
+          "wy": 1989,
+          "prcp_mm": 580.5,
+          "api_start_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 6.31,
+          "lag_snowpath_d": 0.16,
+          "lag_bucket_d": 6.16
+        },
+        {
+          "wy": 1990,
+          "prcp_mm": 543.2,
+          "api_start_mm": 18.3,
+          "swe_start_mm": 0.0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 7.48,
+          "lag_snowpath_d": 0.38,
+          "lag_bucket_d": 7.1
+        },
+        {
+          "wy": 1991,
+          "prcp_mm": 793.9,
+          "api_start_mm": 6.2,
+          "swe_start_mm": 0.0,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 13.14,
+          "lag_snowpath_d": 0.15,
+          "lag_bucket_d": 13.0
+        },
+        {
+          "wy": 1992,
+          "prcp_mm": 854.3,
+          "api_start_mm": 0.1,
+          "swe_start_mm": 0.0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 14.27,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 14.27
+        },
+        {
+          "wy": 1993,
+          "prcp_mm": 1447.6,
+          "api_start_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 14.28,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 14.28
+        },
+        {
+          "wy": 1994,
+          "prcp_mm": 665.7,
+          "api_start_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 12.92,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 12.92
+        },
+        {
+          "wy": 1995,
+          "prcp_mm": 1595.0,
+          "api_start_mm": 3.6,
+          "swe_start_mm": 0.0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 13.94,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 13.94
+        },
+        {
+          "wy": 1996,
+          "prcp_mm": 1009.3,
+          "api_start_mm": 0.2,
+          "swe_start_mm": 0.0,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 14.26,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 14.26
+        },
+        {
+          "wy": 1997,
+          "prcp_mm": 1077.0,
+          "api_start_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 13.97,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 13.97
+        },
+        {
+          "wy": 1998,
+          "prcp_mm": 1722.0,
+          "api_start_mm": 1.1,
+          "swe_start_mm": 0.0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 14.06,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 14.06
+        },
+        {
+          "wy": 1999,
+          "prcp_mm": 899.0,
+          "api_start_mm": 0.9,
+          "swe_start_mm": 0.0,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 13.43,
+          "lag_snowpath_d": 0.04,
+          "lag_bucket_d": 13.39
+        }
+      ]
+    },
+    "11266500": {
+      "gauge": "11266500",
+      "frac_snow": 0.803,
+      "study_period": {
+        "amc_state_memory_days": {
+          "mean": 63.46,
+          "sd": 26.24,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 53.72,
+          "sd": 25.73,
+          "n": 19
+        },
+        "bucket_lag_days": {
+          "mean": 9.74,
+          "sd": 3.73,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "amc_state_memory_days": {
+          "mean": 76.17,
+          "sd": 37.55,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 67.36,
+          "sd": 34.54,
+          "n": 2
+        },
+        "bucket_lag_days": {
+          "mean": 8.81,
+          "sd": 3.01,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "exceeds_30d_window": true,
+      "api_acf_efold_days": 35,
+      "api_start_mm_max": 56.7,
+      "swe_start_mm_max": 25.1,
+      "water_years": [
+        {
+          "wy": 1981,
+          "prcp_mm": 608.7,
+          "api_start_mm": 0.7,
+          "swe_start_mm": 0.0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 57.01,
+          "lag_snowpath_d": 43.12,
+          "lag_bucket_d": 13.89
+        },
+        {
+          "wy": 1982,
+          "prcp_mm": 1675.8,
+          "api_start_mm": 0.5,
+          "swe_start_mm": 0.0,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 65.02,
+          "lag_snowpath_d": 57.12,
+          "lag_bucket_d": 7.9
+        },
+        {
+          "wy": 1983,
+          "prcp_mm": 1726.2,
+          "api_start_mm": 56.7,
+          "swe_start_mm": 0.0,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 109.55,
+          "lag_snowpath_d": 106.36,
+          "lag_bucket_d": 3.19
+        },
+        {
+          "wy": 1984,
+          "prcp_mm": 1007.1,
+          "api_start_mm": 51.5,
+          "swe_start_mm": 6.9,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 80.79,
+          "lag_snowpath_d": 73.54,
+          "lag_bucket_d": 7.24
+        },
+        {
+          "wy": 1985,
+          "prcp_mm": 709.9,
+          "api_start_mm": 5.3,
+          "swe_start_mm": 1.3,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 62.8,
+          "lag_snowpath_d": 52.79,
+          "lag_bucket_d": 10.01
+        },
+        {
+          "wy": 1986,
+          "prcp_mm": 1302.1,
+          "api_start_mm": 11.3,
+          "swe_start_mm": 0.0,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 47.24,
+          "lag_snowpath_d": 37.27,
+          "lag_bucket_d": 9.98
+        },
+        {
+          "wy": 1987,
+          "prcp_mm": 455.0,
+          "api_start_mm": 16.1,
+          "swe_start_mm": 25.1,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 40.75,
+          "lag_snowpath_d": 32.75,
+          "lag_bucket_d": 8.0
+        },
+        {
+          "wy": 1988,
+          "prcp_mm": 675.4,
+          "api_start_mm": 0.2,
+          "swe_start_mm": 0.0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 48.87,
+          "lag_snowpath_d": 34.77,
+          "lag_bucket_d": 14.1
+        },
+        {
+          "wy": 1989,
+          "prcp_mm": 809.9,
+          "api_start_mm": 0.4,
+          "swe_start_mm": 0.0,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 41.38,
+          "lag_snowpath_d": 35.49,
+          "lag_bucket_d": 5.89
+        },
+        {
+          "wy": 1990,
+          "prcp_mm": 612.3,
+          "api_start_mm": 33.2,
+          "swe_start_mm": 0.0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 27.47,
+          "lag_snowpath_d": 24.6,
+          "lag_bucket_d": 2.87
+        },
+        {
+          "wy": 1991,
+          "prcp_mm": 650.8,
+          "api_start_mm": 7.9,
+          "swe_start_mm": 0.0,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 69.22,
+          "lag_snowpath_d": 57.94,
+          "lag_bucket_d": 11.29
+        },
+        {
+          "wy": 1992,
+          "prcp_mm": 693.5,
+          "api_start_mm": 0.9,
+          "swe_start_mm": 0.0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 36.92,
+          "lag_snowpath_d": 23.16,
+          "lag_bucket_d": 13.76
+        },
+        {
+          "wy": 1993,
+          "prcp_mm": 1310.1,
+          "api_start_mm": 0.9,
+          "swe_start_mm": 0.0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 104.97,
+          "lag_snowpath_d": 90.86,
+          "lag_bucket_d": 14.11
+        },
+        {
+          "wy": 1994,
+          "prcp_mm": 541.0,
+          "api_start_mm": 0.2,
+          "swe_start_mm": 0.0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 23.66,
+          "lag_snowpath_d": 17.42,
+          "lag_bucket_d": 6.24
+        },
+        {
+          "wy": 1995,
+          "prcp_mm": 1476.2,
+          "api_start_mm": 18.6,
+          "swe_start_mm": 0.0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 89.68,
+          "lag_snowpath_d": 78.22,
+          "lag_bucket_d": 11.46
+        },
+        {
+          "wy": 1996,
+          "prcp_mm": 1105.8,
+          "api_start_mm": 0.5,
+          "swe_start_mm": 0.0,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 58.81,
+          "lag_snowpath_d": 44.75,
+          "lag_bucket_d": 14.06
+        },
+        {
+          "wy": 1997,
+          "prcp_mm": 1324.7,
+          "api_start_mm": 0.8,
+          "swe_start_mm": 0.0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 89.24,
+          "lag_snowpath_d": 75.73,
+          "lag_bucket_d": 13.51
+        },
+        {
+          "wy": 1998,
+          "prcp_mm": 1730.0,
+          "api_start_mm": 4.1,
+          "swe_start_mm": 0.0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 102.72,
+          "lag_snowpath_d": 91.78,
+          "lag_bucket_d": 10.94
+        },
+        {
+          "wy": 1999,
+          "prcp_mm": 876.1,
+          "api_start_mm": 34.8,
+          "swe_start_mm": 0.0,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 49.62,
+          "lag_snowpath_d": 42.94,
+          "lag_bucket_d": 6.68
+        }
+      ]
+    },
+    "12040500": {
+      "gauge": "12040500",
+      "frac_snow": 0.039,
+      "study_period": {
+        "amc_state_memory_days": {
+          "mean": 10.56,
+          "sd": 4.5,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 2.01,
+          "sd": 2.94,
+          "n": 19
+        },
+        "bucket_lag_days": {
+          "mean": 8.55,
+          "sd": 3.22,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "amc_state_memory_days": {
+          "mean": 9.66,
+          "sd": 4.41,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "snowpath_lag_days": {
+          "mean": 0.22,
+          "sd": 0.11,
+          "n": 2
+        },
+        "bucket_lag_days": {
+          "mean": 9.44,
+          "sd": 4.31,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "exceeds_30d_window": false,
+      "api_acf_efold_days": 43,
+      "api_start_mm_max": 216.1,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "prcp_mm": 3927.4,
+          "api_start_mm": 113.7,
+          "swe_start_mm": 0.0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 1.96,
+          "lag_snowpath_d": 0.75,
+          "lag_bucket_d": 1.21
+        },
+        {
+          "wy": 1982,
+          "prcp_mm": 4064.7,
+          "api_start_mm": 181.6,
+          "swe_start_mm": 0.0,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 10.67,
+          "lag_snowpath_d": 3.11,
+          "lag_bucket_d": 7.56
+        },
+        {
+          "wy": 1983,
+          "prcp_mm": 4393.5,
+          "api_start_mm": 35.2,
+          "swe_start_mm": 0.0,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 11.06,
+          "lag_snowpath_d": 0.3,
+          "lag_bucket_d": 10.75
+        },
+        {
+          "wy": 1984,
+          "prcp_mm": 4017.0,
+          "api_start_mm": 42.1,
+          "swe_start_mm": 0.0,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 12.08,
+          "lag_snowpath_d": 1.5,
+          "lag_bucket_d": 10.58
+        },
+        {
+          "wy": 1985,
+          "prcp_mm": 3141.6,
+          "api_start_mm": 35.4,
+          "swe_start_mm": 0.0,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 18.49,
+          "lag_snowpath_d": 8.89,
+          "lag_bucket_d": 9.6
+        },
+        {
+          "wy": 1986,
+          "prcp_mm": 3623.0,
+          "api_start_mm": 38.6,
+          "swe_start_mm": 0.0,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 7.16,
+          "lag_snowpath_d": 1.67,
+          "lag_bucket_d": 5.49
+        },
+        {
+          "wy": 1987,
+          "prcp_mm": 3392.7,
+          "api_start_mm": 104.2,
+          "swe_start_mm": 0.0,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 8.84,
+          "lag_snowpath_d": 0.04,
+          "lag_bucket_d": 8.8
+        },
+        {
+          "wy": 1988,
+          "prcp_mm": 3190.0,
+          "api_start_mm": 19.6,
+          "swe_start_mm": 0.0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 8.06,
+          "lag_snowpath_d": 2.36,
+          "lag_bucket_d": 5.7
+        },
+        {
+          "wy": 1989,
+          "prcp_mm": 3366.0,
+          "api_start_mm": 102.7,
+          "swe_start_mm": 0.0,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 20.01,
+          "lag_snowpath_d": 10.66,
+          "lag_bucket_d": 9.35
+        },
+        {
+          "wy": 1990,
+          "prcp_mm": 3183.1,
+          "api_start_mm": 8.8,
+          "swe_start_mm": 0.0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 14.86,
+          "lag_snowpath_d": 1.61,
+          "lag_bucket_d": 13.25
+        },
+        {
+          "wy": 1991,
+          "prcp_mm": 3833.1,
+          "api_start_mm": 19.6,
+          "swe_start_mm": 0.0,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 13.36,
+          "lag_snowpath_d": 1.04,
+          "lag_bucket_d": 12.32
+        },
+        {
+          "wy": 1992,
+          "prcp_mm": 2742.3,
+          "api_start_mm": 24.4,
+          "swe_start_mm": 0.0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 7.58,
+          "lag_snowpath_d": 0.0,
+          "lag_bucket_d": 7.57
+        },
+        {
+          "wy": 1993,
+          "prcp_mm": 2709.2,
+          "api_start_mm": 58.4,
+          "swe_start_mm": 0.0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 13.97,
+          "lag_snowpath_d": 3.54,
+          "lag_bucket_d": 10.44
+        },
+        {
+          "wy": 1994,
+          "prcp_mm": 2651.9,
+          "api_start_mm": 6.4,
+          "swe_start_mm": 0.0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 11.55,
+          "lag_snowpath_d": 0.04,
+          "lag_bucket_d": 11.51
+        },
+        {
+          "wy": 1995,
+          "prcp_mm": 3520.1,
+          "api_start_mm": 31.5,
+          "swe_start_mm": 0.0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 8.0,
+          "lag_snowpath_d": 0.38,
+          "lag_bucket_d": 7.62
+        },
+        {
+          "wy": 1996,
+          "prcp_mm": 3494.1,
+          "api_start_mm": 79.1,
+          "swe_start_mm": 0.0,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 9.39,
+          "lag_snowpath_d": 0.43,
+          "lag_bucket_d": 8.96
+        },
+        {
+          "wy": 1997,
+          "prcp_mm": 4325.5,
+          "api_start_mm": 33.8,
+          "swe_start_mm": 0.0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 4.35,
+          "lag_snowpath_d": 1.51,
+          "lag_bucket_d": 2.85
+        },
+        {
+          "wy": 1998,
+          "prcp_mm": 2870.8,
+          "api_start_mm": 216.1,
+          "swe_start_mm": 0.0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 6.54,
+          "lag_snowpath_d": 0.15,
+          "lag_bucket_d": 6.39
+        },
+        {
+          "wy": 1999,
+          "prcp_mm": 4020.5,
+          "api_start_mm": 19.6,
+          "swe_start_mm": 0.0,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 12.78,
+          "lag_snowpath_d": 0.3,
+          "lag_bucket_d": 12.48
+        }
+      ]
+    }
+  },
+  "prediction": {
+    "stated_in": "research/amc_memory/design.md (written before computation)",
+    "predicted": {
+      "01013500": true,
+      "07067000": false
+    },
+    "observed": {
+      "01013500": false,
+      "07067000": false
+    },
+    "held": false
+  },
+  "post_hoc_sensitivity": {
+    "label": "POST-HOC (constructed after seeing the primary result)",
+    "definition": "snow-path centroid lag + analytic bucket mean residence k/(1-k) = 13.29 d",
+    "motivation": "recovered within-WY bucket term spans -2.93..11.83 d across basins vs the analytic 13.29 d -- the windowed centroid estimator truncates a fast store's contribution",
+    "per_basin": {
+      "01013500": {
+        "memory_days": 37.33,
+        "exceeds_30d_window": true
+      },
+      "01466500": {
+        "memory_days": 14.01,
+        "exceeds_30d_window": false
+      },
+      "02177000": {
+        "memory_days": 13.49,
+        "exceeds_30d_window": false
+      },
+      "07067000": {
+        "memory_days": 13.74,
+        "exceeds_30d_window": false
+      },
+      "08202700": {
+        "memory_days": 13.3,
+        "exceeds_30d_window": false
+      },
+      "09210500": {
+        "memory_days": 64.67,
+        "exceeds_30d_window": true
+      },
+      "09352900": {
+        "memory_days": 75.49,
+        "exceeds_30d_window": true
+      },
+      "09512280": {
+        "memory_days": 13.34,
+        "exceeds_30d_window": false
+      },
+      "11143000": {
+        "memory_days": 13.35,
+        "exceeds_30d_window": false
+      },
+      "11266500": {
+        "memory_days": 67.01,
+        "exceeds_30d_window": true
+      },
+      "12040500": {
+        "memory_days": 15.3,
+        "exceeds_30d_window": false
+      }
+    },
+    "prediction_under_sensitivity": {
+      "observed": {
+        "01013500": true,
+        "07067000": false
+      },
+      "held": true
+    },
+    "disagreement_with_primary": [
+      "01013500"
+    ]
+  }
+}

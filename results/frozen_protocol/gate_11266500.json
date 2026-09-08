@@ -1,0 +1,347 @@
+{
+  "config": {
+    "model": "LSTM",
+    "hidden": 32,
+    "layers": 1,
+    "lr": 0.0018,
+    "optimizer": "Adam",
+    "epochs": 20,
+    "patience": 8,
+    "loss": "nse",
+    "seq_len": 30,
+    "batch_size": 32,
+    "train_mask_lo": 0.0,
+    "train_mask_hi": 1.0,
+    "mask_grid": [
+      0.0,
+      0.8,
+      1.0
+    ],
+    "headline_mask": 1.0,
+    "eval_mask_seed": 123,
+    "router": "shipped default: route_physics(attrs) with enable_amc=False, enable_recession=False",
+    "gate": "snow feature on iff frac_snow > 0.15; g_snow_feature = sigmoid(6*(frac_snow-0.15))",
+    "gate_threshold_frac_snow": 0.15,
+    "pairing": "paired by seed: both arms share weight-init, train-mask and eval-mask seeds",
+    "device": "cpu",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "basins": [
+      "11266500"
+    ]
+  },
+  "basins": {
+    "11266500": {
+      "frac_snow": 0.803,
+      "regime": "snowmelt-montane",
+      "spec": {
+        "weights": {
+          "recession": 0.1177,
+          "response": 0.138,
+          "nonneg": 0.3
+        },
+        "lag": 6,
+        "smooth": 5,
+        "physics_features": true,
+        "api_feature": false,
+        "force_decay": false,
+        "gates": {
+          "g_snow_feature": 0.981,
+          "g_recession": 0.585,
+          "g_response": 0.62,
+          "snow_feature_on": true,
+          "amc_on": false,
+          "recession_band_on": false
+        }
+      },
+      "control": [
+        [
+          {
+            "MAE": 82.29383850097656,
+            "RMSE": 154.9744873046875,
+            "NSE": 0.9830408692359924,
+            "KGE": 0.9615920994805249,
+            "PBIAS": -1.01376473903656,
+            "MAE_extreme": 316.3755187988281,
+            "RMSE_extreme": 453.55841064453125,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 0.0
+          },
+          {
+            "MAE": 183.39004516601562,
+            "RMSE": 332.1734619140625,
+            "NSE": 0.9220864176750183,
+            "KGE": 0.8316829685341285,
+            "PBIAS": -10.037940979003906,
+            "MAE_extreme": 693.9750366210938,
+            "RMSE_extreme": 898.2710571289062,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 0.8
+          },
+          {
+            "MAE": 519.1124267578125,
+            "RMSE": 992.573974609375,
+            "NSE": 0.3043205738067627,
+            "KGE": 0.19950474410301589,
+            "PBIAS": -48.116905212402344,
+            "MAE_extreme": 3039.3759765625,
+            "RMSE_extreme": 3140.5458984375,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 1.0
+          }
+        ],
+        [
+          {
+            "MAE": 88.87405395507812,
+            "RMSE": 169.81748962402344,
+            "NSE": 0.9796366691589355,
+            "KGE": 0.973895399946966,
+            "PBIAS": 2.151869297027588,
+            "MAE_extreme": 439.3969421386719,
+            "RMSE_extreme": 535.36376953125,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 0.0
+          },
+          {
+            "MAE": 200.35549926757812,
+            "RMSE": 406.843017578125,
+            "NSE": 0.8831208348274231,
+            "KGE": 0.9292096508714738,
+            "PBIAS": 2.254535675048828,
+            "MAE_extreme": 944.8799438476562,
+            "RMSE_extreme": 1127.2064208984375,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 0.8
+          },
+          {
+            "MAE": 405.2078552246094,
+            "RMSE": 787.423583984375,
+            "NSE": 0.5621752738952637,
+            "KGE": 0.4923733185799585,
+            "PBIAS": -28.99383544921875,
+            "MAE_extreme": 2289.498046875,
+            "RMSE_extreme": 2442.014404296875,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 1.0
+          }
+        ],
+        [
+          {
+            "MAE": 91.67753601074219,
+            "RMSE": 175.20062255859375,
+            "NSE": 0.9783252477645874,
+            "KGE": 0.9523270740607404,
+            "PBIAS": 3.2434158325195312,
+            "MAE_extreme": 450.43206787109375,
+            "RMSE_extreme": 552.7264404296875,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 0.0
+          },
+          {
+            "MAE": 174.1339569091797,
+            "RMSE": 326.3907165527344,
+            "NSE": 0.9247755408287048,
+            "KGE": 0.9231961752023292,
+            "PBIAS": -6.328563213348389,
+            "MAE_extreme": 778.5819702148438,
+            "RMSE_extreme": 930.194091796875,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 0.8
+          },
+          {
+            "MAE": 497.81707763671875,
+            "RMSE": 960.4016723632812,
+            "NSE": 0.3486877679824829,
+            "KGE": 0.2095695919108319,
+            "PBIAS": -50.276424407958984,
+            "MAE_extreme": 3025.227783203125,
+            "RMSE_extreme": 3132.860107421875,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 1.0
+          }
+        ]
+      ],
+      "physics": [
+        [
+          {
+            "MAE": 136.28903198242188,
+            "RMSE": 302.92608642578125,
+            "NSE": 0.9352027177810669,
+            "KGE": 0.8715144565052839,
+            "PBIAS": 7.410785675048828,
+            "MAE_extreme": 754.31103515625,
+            "RMSE_extreme": 900.7601928710938,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 0.0
+          },
+          {
+            "MAE": 208.16830444335938,
+            "RMSE": 408.468505859375,
+            "NSE": 0.8821849822998047,
+            "KGE": 0.8797671188082286,
+            "PBIAS": 5.498929023742676,
+            "MAE_extreme": 1022.898681640625,
+            "RMSE_extreme": 1172.699951171875,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 0.8
+          },
+          {
+            "MAE": 304.8465270996094,
+            "RMSE": 542.7413330078125,
+            "NSE": 0.7919971942901611,
+            "KGE": 0.8849643203218582,
+            "PBIAS": -3.6421847343444824,
+            "MAE_extreme": 1226.5548095703125,
+            "RMSE_extreme": 1397.0166015625,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 1.0
+          }
+        ],
+        [
+          {
+            "MAE": 111.11868286132812,
+            "RMSE": 237.3464813232422,
+            "NSE": 0.9602214694023132,
+            "KGE": 0.8868747222125725,
+            "PBIAS": 3.322964668273926,
+            "MAE_extreme": 669.6547241210938,
+            "RMSE_extreme": 823.695068359375,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 0.0
+          },
+          {
+            "MAE": 204.52572631835938,
+            "RMSE": 417.81884765625,
+            "NSE": 0.876729428768158,
+            "KGE": 0.7985804306806166,
+            "PBIAS": 8.8785400390625,
+            "MAE_extreme": 1224.6165771484375,
+            "RMSE_extreme": 1384.9449462890625,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 0.8
+          },
+          {
+            "MAE": 284.67138671875,
+            "RMSE": 522.0591430664062,
+            "NSE": 0.8075478076934814,
+            "KGE": 0.838184011952269,
+            "PBIAS": 2.635586738586426,
+            "MAE_extreme": 1376.1661376953125,
+            "RMSE_extreme": 1559.662109375,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 1.0
+          }
+        ],
+        [
+          {
+            "MAE": 118.9760971069336,
+            "RMSE": 241.92637634277344,
+            "NSE": 0.9586714506149292,
+            "KGE": 0.9005348715382421,
+            "PBIAS": 6.336211681365967,
+            "MAE_extreme": 671.8225708007812,
+            "RMSE_extreme": 826.4974365234375,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 0.0
+          },
+          {
+            "MAE": 172.8919677734375,
+            "RMSE": 302.94244384765625,
+            "NSE": 0.9351957440376282,
+            "KGE": 0.9124848613614817,
+            "PBIAS": 6.691021919250488,
+            "MAE_extreme": 811.2816772460938,
+            "RMSE_extreme": 926.7259521484375,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 0.8
+          },
+          {
+            "MAE": 251.3782501220703,
+            "RMSE": 419.8517150878906,
+            "NSE": 0.8755269646644592,
+            "KGE": 0.9325816204652743,
+            "PBIAS": 0.6324736475944519,
+            "MAE_extreme": 871.5447998046875,
+            "RMSE_extreme": 1010.035400390625,
+            "n_extreme": 54,
+            "extreme_threshold": 3495.000244140625,
+            "mask_ratio": 1.0
+          }
+        ]
+      ],
+      "deviation_vs_reference": [
+        {
+          "seed": 0,
+          "control": {
+            "NSE": 0.0,
+            "MAE": 0.0,
+            "RMSE": 0.0,
+            "KGE": 0.0,
+            "MAE_extreme": 0.0
+          },
+          "physics": {
+            "NSE": 0.0,
+            "MAE": 0.0,
+            "RMSE": 0.0,
+            "KGE": 0.0,
+            "MAE_extreme": 0.0
+          }
+        },
+        {
+          "seed": 1,
+          "control": {
+            "NSE": 0.0,
+            "MAE": 0.0,
+            "RMSE": 0.0,
+            "KGE": 0.0,
+            "MAE_extreme": 0.0
+          },
+          "physics": {
+            "NSE": 0.0,
+            "MAE": 0.0,
+            "RMSE": 0.0,
+            "KGE": 0.0,
+            "MAE_extreme": 0.0
+          }
+        },
+        {
+          "seed": 2,
+          "control": {
+            "NSE": 0.0,
+            "MAE": 0.0,
+            "RMSE": 0.0,
+            "KGE": 0.0,
+            "MAE_extreme": 0.0
+          },
+          "physics": {
+            "NSE": 0.0,
+            "MAE": 0.0,
+            "RMSE": 0.0,
+            "KGE": 0.0,
+            "MAE_extreme": 0.0
+          }
+        }
+      ]
+    }
+  }
+}

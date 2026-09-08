@@ -1,0 +1,2364 @@
+{
+  "config": {
+    "task": "CC-02 state-memory measurement",
+    "basins": [
+      "01013500",
+      "01466500",
+      "02177000",
+      "07067000",
+      "08202700",
+      "09210500",
+      "09352900",
+      "09512280",
+      "11143000",
+      "11266500",
+      "12040500"
+    ],
+    "loader": "src.dataset.load_and_preprocess_data with all defaults (start 1980-01-01, end 1999-12-31, split (0.70, 0.15)) -- identical to the production call src/multibasin.py:59-62",
+    "snow_params": {
+      "ddf": 2.5,
+      "t_snow": 1.0,
+      "t_melt": 0.0
+    },
+    "snow_params_source": "src/dataset.py:74 defaults; production call :273 with snow_params={}",
+    "swe_identity_check": "degree_day_snow re-derivation bitwise-equal to loader swe_recon",
+    "amc_k": 0.93,
+    "amc_k_source": "src/dataset.py:37 (API_DECAY); production call :283 (default k)",
+    "recession_k_doc": 0.94,
+    "recession_k_source": "docs/RESULTS.md:62; per-basin train fit src/dataset.py:330",
+    "water_year": "Oct 1 - Sep 30, labeled by ending year; complete WYs only",
+    "snowfall_min_mm": 10.0,
+    "swe_spell_threshold_mm": 0.1,
+    "acf_max_lag_days": 400,
+    "frac_snow_source": "src.attributes.compute_attributes (src/attributes.py:134-149)",
+    "seq_len_window_days": 30,
+    "provenance": {
+      "script": "research/state_memory/run.py",
+      "sha256": "b3ffe34d6e1ae40b2dabd93e5d14f3b67e9b3f7ef3930bc3d34a90254c674a88",
+      "mtime_utc": "2026-07-28T03:01:06Z"
+    }
+  },
+  "analytic_memory_days": {
+    "amc": {
+      "k": 0.93,
+      "efold_days": 13.78
+    },
+    "recession": {
+      "k": 0.94,
+      "efold_days": 16.16
+    },
+    "formula": "efold = -1/ln(k) for S_t = k*S_{t-1} + u_t"
+  },
+  "basins": {
+    "01013500": {
+      "gauge": "01013500",
+      "frac_snow": 0.275,
+      "study_period": {
+        "centroid_lag_days": {
+          "mean": 77.19,
+          "sd": 11.68,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 164.84,
+          "sd": 15.68,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "centroid_lag_days": {
+          "mean": 76.68,
+          "sd": 7.62,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 171.5,
+          "sd": 2.12,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "acf_efold_days": 57,
+      "recession_k_train": 0.9581,
+      "recession_efold_days_train": 23.4,
+      "snowfall_mm_wy_mean": 343.6,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "snowfall_mm": 347.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 171,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 73.48
+        },
+        {
+          "wy": 1982,
+          "snowfall_mm": 412.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 171,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 82.68
+        },
+        {
+          "wy": 1983,
+          "snowfall_mm": 366.5,
+          "swe_start_mm": 0.0,
+          "season_len_d": 142,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 56.27
+        },
+        {
+          "wy": 1984,
+          "snowfall_mm": 535.5,
+          "swe_start_mm": 0.0,
+          "season_len_d": 183,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 104.43
+        },
+        {
+          "wy": 1985,
+          "snowfall_mm": 266.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 152,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 76.7
+        },
+        {
+          "wy": 1986,
+          "snowfall_mm": 301.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 165,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 67.83
+        },
+        {
+          "wy": 1987,
+          "snowfall_mm": 273.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 153,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 86.86
+        },
+        {
+          "wy": 1988,
+          "snowfall_mm": 239.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 158,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 79.0
+        },
+        {
+          "wy": 1989,
+          "snowfall_mm": 251.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 163,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 68.55
+        },
+        {
+          "wy": 1990,
+          "snowfall_mm": 302.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 163,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 79.97
+        },
+        {
+          "wy": 1991,
+          "snowfall_mm": 462.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 185,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 92.0
+        },
+        {
+          "wy": 1992,
+          "snowfall_mm": 324.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 165,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 77.41
+        },
+        {
+          "wy": 1993,
+          "snowfall_mm": 237.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 121,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 54.18
+        },
+        {
+          "wy": 1994,
+          "snowfall_mm": 405.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 189,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 74.93
+        },
+        {
+          "wy": 1995,
+          "snowfall_mm": 335.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 168,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 83.35
+        },
+        {
+          "wy": 1996,
+          "snowfall_mm": 331.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 164,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 70.25
+        },
+        {
+          "wy": 1997,
+          "snowfall_mm": 398.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 176,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 85.42
+        },
+        {
+          "wy": 1998,
+          "snowfall_mm": 380.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 170,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 71.29
+        },
+        {
+          "wy": 1999,
+          "snowfall_mm": 355.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 173,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 82.06
+        }
+      ]
+    },
+    "01466500": {
+      "gauge": "01466500",
+      "frac_snow": 0.055,
+      "study_period": {
+        "centroid_lag_days": {
+          "mean": 8.99,
+          "sd": 5.8,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 24.16,
+          "sd": 18.57,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "centroid_lag_days": {
+          "mean": 4.62,
+          "sd": 0.29,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 9.0,
+          "sd": 2.83,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "acf_efold_days": 25,
+      "recession_k_train": 0.9333,
+      "recession_efold_days_train": 14.5,
+      "snowfall_mm_wy_mean": 85.7,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "snowfall_mm": 63.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 25,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 7.5
+        },
+        {
+          "wy": 1982,
+          "snowfall_mm": 133.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 22,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 8.75
+        },
+        {
+          "wy": 1983,
+          "snowfall_mm": 120.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 18,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 8.28
+        },
+        {
+          "wy": 1984,
+          "snowfall_mm": 120.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 24,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 7.13
+        },
+        {
+          "wy": 1985,
+          "snowfall_mm": 71.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 50,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 17.26
+        },
+        {
+          "wy": 1986,
+          "snowfall_mm": 54.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 12,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 4.77
+        },
+        {
+          "wy": 1987,
+          "snowfall_mm": 136.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 48,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 22.38
+        },
+        {
+          "wy": 1988,
+          "snowfall_mm": 56.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 23,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 9.56
+        },
+        {
+          "wy": 1989,
+          "snowfall_mm": 48.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 10,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 4.93
+        },
+        {
+          "wy": 1990,
+          "snowfall_mm": 53.5,
+          "swe_start_mm": 0.0,
+          "season_len_d": 26,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 9.18
+        },
+        {
+          "wy": 1991,
+          "snowfall_mm": 76.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 8,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 2.67
+        },
+        {
+          "wy": 1992,
+          "snowfall_mm": 23.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 7,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 3.26
+        },
+        {
+          "wy": 1993,
+          "snowfall_mm": 54.5,
+          "swe_start_mm": 0.0,
+          "season_len_d": 10,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 4.53
+        },
+        {
+          "wy": 1994,
+          "snowfall_mm": 210.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 65,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 22.14
+        },
+        {
+          "wy": 1995,
+          "snowfall_mm": 39.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 17,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 11.81
+        },
+        {
+          "wy": 1996,
+          "snowfall_mm": 214.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 63,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 10.38
+        },
+        {
+          "wy": 1997,
+          "snowfall_mm": 36.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 13,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 7.09
+        },
+        {
+          "wy": 1998,
+          "snowfall_mm": 28.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 7,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 4.42
+        },
+        {
+          "wy": 1999,
+          "snowfall_mm": 84.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 11,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 4.83
+        }
+      ]
+    },
+    "02177000": {
+      "gauge": "02177000",
+      "frac_snow": 0.018,
+      "study_period": {
+        "centroid_lag_days": {
+          "mean": 5.34,
+          "sd": 2.78,
+          "n": 18,
+          "n_null_wy": 1
+        },
+        "season_length_days": {
+          "mean": 9.89,
+          "sd": 5.43,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "centroid_lag_days": {
+          "mean": 5.4,
+          "sd": 4.06,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 14.5,
+          "sd": 10.61,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "acf_efold_days": 7,
+      "recession_k_train": 0.9265,
+      "recession_efold_days_train": 13.1,
+      "snowfall_mm_wy_mean": 61.7,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "snowfall_mm": 58.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 17,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 11.08
+        },
+        {
+          "wy": 1982,
+          "snowfall_mm": 128.7,
+          "swe_start_mm": 0.0,
+          "season_len_d": 8,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 2.93
+        },
+        {
+          "wy": 1983,
+          "snowfall_mm": 67.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 7,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 3.01
+        },
+        {
+          "wy": 1984,
+          "snowfall_mm": 32.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 5,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 3.73
+        },
+        {
+          "wy": 1985,
+          "snowfall_mm": 84.5,
+          "swe_start_mm": 0.0,
+          "season_len_d": 15,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 5.71
+        },
+        {
+          "wy": 1986,
+          "snowfall_mm": 28.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 5,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 2.1
+        },
+        {
+          "wy": 1987,
+          "snowfall_mm": 89.7,
+          "swe_start_mm": 0.0,
+          "season_len_d": 12,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 4.53
+        },
+        {
+          "wy": 1988,
+          "snowfall_mm": 58.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 14,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 10.17
+        },
+        {
+          "wy": 1989,
+          "snowfall_mm": 31.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 4,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 2.92
+        },
+        {
+          "wy": 1990,
+          "snowfall_mm": 20.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 13,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 5.75
+        },
+        {
+          "wy": 1991,
+          "snowfall_mm": 15.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 4,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 2.52
+        },
+        {
+          "wy": 1992,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1993,
+          "snowfall_mm": 96.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 9,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 4.61
+        },
+        {
+          "wy": 1994,
+          "snowfall_mm": 78.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 10,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 6.83
+        },
+        {
+          "wy": 1995,
+          "snowfall_mm": 14.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 8,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 3.73
+        },
+        {
+          "wy": 1996,
+          "snowfall_mm": 131.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 13,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 7.0
+        },
+        {
+          "wy": 1997,
+          "snowfall_mm": 87.7,
+          "swe_start_mm": 0.0,
+          "season_len_d": 15,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 8.69
+        },
+        {
+          "wy": 1998,
+          "snowfall_mm": 23.5,
+          "swe_start_mm": 0.0,
+          "season_len_d": 7,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 2.53
+        },
+        {
+          "wy": 1999,
+          "snowfall_mm": 124.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 22,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 8.27
+        }
+      ]
+    },
+    "07067000": {
+      "gauge": "07067000",
+      "frac_snow": 0.043,
+      "study_period": {
+        "centroid_lag_days": {
+          "mean": 7.13,
+          "sd": 5.0,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 17.37,
+          "sd": 11.87,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "centroid_lag_days": {
+          "mean": 5.87,
+          "sd": 3.51,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 17.0,
+          "sd": 14.14,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "acf_efold_days": 16,
+      "recession_k_train": 0.9307,
+      "recession_efold_days_train": 13.9,
+      "snowfall_mm_wy_mean": 71.0,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "snowfall_mm": 90.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 18,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 7.13
+        },
+        {
+          "wy": 1982,
+          "snowfall_mm": 82.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 16,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 9.1
+        },
+        {
+          "wy": 1983,
+          "snowfall_mm": 23.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 8,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 4.12
+        },
+        {
+          "wy": 1984,
+          "snowfall_mm": 53.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 22,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 4.5
+        },
+        {
+          "wy": 1985,
+          "snowfall_mm": 75.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 49,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 21.45
+        },
+        {
+          "wy": 1986,
+          "snowfall_mm": 26.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 10,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 5.32
+        },
+        {
+          "wy": 1987,
+          "snowfall_mm": 59.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 11,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 4.69
+        },
+        {
+          "wy": 1988,
+          "snowfall_mm": 76.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 20,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 5.61
+        },
+        {
+          "wy": 1989,
+          "snowfall_mm": 104.7,
+          "swe_start_mm": 0.0,
+          "season_len_d": 14,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 7.63
+        },
+        {
+          "wy": 1990,
+          "snowfall_mm": 37.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 18,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 2.11
+        },
+        {
+          "wy": 1991,
+          "snowfall_mm": 149.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 45,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 19.06
+        },
+        {
+          "wy": 1992,
+          "snowfall_mm": 42.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 7,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 4.55
+        },
+        {
+          "wy": 1993,
+          "snowfall_mm": 98.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 17,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 8.22
+        },
+        {
+          "wy": 1994,
+          "snowfall_mm": 107.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 9,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 4.84
+        },
+        {
+          "wy": 1995,
+          "snowfall_mm": 57.7,
+          "swe_start_mm": 0.0,
+          "season_len_d": 6,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 3.53
+        },
+        {
+          "wy": 1996,
+          "snowfall_mm": 52.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 13,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 6.68
+        },
+        {
+          "wy": 1997,
+          "snowfall_mm": 84.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 13,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 5.22
+        },
+        {
+          "wy": 1998,
+          "snowfall_mm": 38.5,
+          "swe_start_mm": 0.0,
+          "season_len_d": 7,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 3.38
+        },
+        {
+          "wy": 1999,
+          "snowfall_mm": 87.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 27,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 8.35
+        }
+      ]
+    },
+    "08202700": {
+      "gauge": "08202700",
+      "frac_snow": 0.003,
+      "study_period": {
+        "centroid_lag_days": {
+          "mean": 2.5,
+          "sd": 1.1,
+          "n": 2,
+          "n_null_wy": 17
+        },
+        "season_length_days": {
+          "mean": 0.79,
+          "sd": 1.62,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "centroid_lag_days": {
+          "mean": null,
+          "sd": null,
+          "n": 0,
+          "n_null_wy": 2
+        },
+        "season_length_days": {
+          "mean": 0.0,
+          "sd": 0.0,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "acf_efold_days": 3,
+      "recession_k_train": 0.1664,
+      "recession_efold_days_train": 0.6,
+      "snowfall_mm_wy_mean": 4.3,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1982,
+          "snowfall_mm": 10.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 3,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1983,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1984,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1985,
+          "snowfall_mm": 46.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 6,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 3.28
+        },
+        {
+          "wy": 1986,
+          "snowfall_mm": 8.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 1,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1987,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1988,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1989,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1990,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1991,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1992,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1993,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1994,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1995,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1996,
+          "snowfall_mm": 0.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 3,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1997,
+          "snowfall_mm": 16.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 2,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 1.73
+        },
+        {
+          "wy": 1998,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1999,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": null
+        }
+      ]
+    },
+    "09210500": {
+      "gauge": "09210500",
+      "frac_snow": 0.597,
+      "study_period": {
+        "centroid_lag_days": {
+          "mean": 79.29,
+          "sd": 18.48,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 187.89,
+          "sd": 21.8,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "centroid_lag_days": {
+          "mean": 80.6,
+          "sd": 0.44,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 191.5,
+          "sd": 24.75,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "acf_efold_days": 63,
+      "recession_k_train": 0.9505,
+      "recession_efold_days_train": 19.7,
+      "snowfall_mm_wy_mean": 361.6,
+      "swe_start_mm_max": 33.8,
+      "water_years": [
+        {
+          "wy": 1981,
+          "snowfall_mm": 119.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 156,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 62.28
+        },
+        {
+          "wy": 1982,
+          "snowfall_mm": 520.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 190,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 72.54
+        },
+        {
+          "wy": 1983,
+          "snowfall_mm": 494.3,
+          "swe_start_mm": 33.8,
+          "season_len_d": 226,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 69.86
+        },
+        {
+          "wy": 1984,
+          "snowfall_mm": 437.7,
+          "swe_start_mm": 0.0,
+          "season_len_d": 202,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 118.88
+        },
+        {
+          "wy": 1985,
+          "snowfall_mm": 314.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 201,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 103.67
+        },
+        {
+          "wy": 1986,
+          "snowfall_mm": 614.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 204,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 75.89
+        },
+        {
+          "wy": 1987,
+          "snowfall_mm": 212.5,
+          "swe_start_mm": 27.9,
+          "season_len_d": 168,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 59.39
+        },
+        {
+          "wy": 1988,
+          "snowfall_mm": 282.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 175,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 72.35
+        },
+        {
+          "wy": 1989,
+          "snowfall_mm": 344.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 171,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 76.73
+        },
+        {
+          "wy": 1990,
+          "snowfall_mm": 295.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 142,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 51.93
+        },
+        {
+          "wy": 1991,
+          "snowfall_mm": 305.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 180,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 65.49
+        },
+        {
+          "wy": 1992,
+          "snowfall_mm": 237.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 175,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 103.17
+        },
+        {
+          "wy": 1993,
+          "snowfall_mm": 399.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 204,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 98.69
+        },
+        {
+          "wy": 1994,
+          "snowfall_mm": 228.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 175,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 57.11
+        },
+        {
+          "wy": 1995,
+          "snowfall_mm": 363.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 207,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 80.71
+        },
+        {
+          "wy": 1996,
+          "snowfall_mm": 413.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 195,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 71.74
+        },
+        {
+          "wy": 1997,
+          "snowfall_mm": 534.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 216,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 104.9
+        },
+        {
+          "wy": 1998,
+          "snowfall_mm": 314.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 174,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 80.91
+        },
+        {
+          "wy": 1999,
+          "snowfall_mm": 437.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 209,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 80.29
+        }
+      ]
+    },
+    "09352900": {
+      "gauge": "09352900",
+      "frac_snow": 0.606,
+      "study_period": {
+        "centroid_lag_days": {
+          "mean": 98.34,
+          "sd": 22.25,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 229.16,
+          "sd": 28.04,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "centroid_lag_days": {
+          "mean": 92.62,
+          "sd": 8.87,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 229.5,
+          "sd": 24.75,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "acf_efold_days": 65,
+      "recession_k_train": 0.9194,
+      "recession_efold_days_train": 11.9,
+      "snowfall_mm_wy_mean": 641.9,
+      "swe_start_mm_max": 39.7,
+      "water_years": [
+        {
+          "wy": 1981,
+          "snowfall_mm": 433.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 210,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 72.75
+        },
+        {
+          "wy": 1982,
+          "snowfall_mm": 695.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 269,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 111.71
+        },
+        {
+          "wy": 1983,
+          "snowfall_mm": 700.4,
+          "swe_start_mm": 2.5,
+          "season_len_d": 256,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 138.73
+        },
+        {
+          "wy": 1984,
+          "snowfall_mm": 690.1,
+          "swe_start_mm": 12.2,
+          "season_len_d": 229,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 122.97
+        },
+        {
+          "wy": 1985,
+          "snowfall_mm": 911.3,
+          "swe_start_mm": 7.9,
+          "season_len_d": 270,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 124.77
+        },
+        {
+          "wy": 1986,
+          "snowfall_mm": 834.8,
+          "swe_start_mm": 13.9,
+          "season_len_d": 225,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 84.47
+        },
+        {
+          "wy": 1987,
+          "snowfall_mm": 708.9,
+          "swe_start_mm": 39.7,
+          "season_len_d": 256,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 100.21
+        },
+        {
+          "wy": 1988,
+          "snowfall_mm": 497.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 221,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 88.26
+        },
+        {
+          "wy": 1989,
+          "snowfall_mm": 550.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 203,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 108.69
+        },
+        {
+          "wy": 1990,
+          "snowfall_mm": 571.5,
+          "swe_start_mm": 0.0,
+          "season_len_d": 198,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 60.96
+        },
+        {
+          "wy": 1991,
+          "snowfall_mm": 509.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 222,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 87.13
+        },
+        {
+          "wy": 1992,
+          "snowfall_mm": 506.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 214,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 106.44
+        },
+        {
+          "wy": 1993,
+          "snowfall_mm": 800.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 240,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 119.23
+        },
+        {
+          "wy": 1994,
+          "snowfall_mm": 547.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 218,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 77.71
+        },
+        {
+          "wy": 1995,
+          "snowfall_mm": 872.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 266,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 108.17
+        },
+        {
+          "wy": 1996,
+          "snowfall_mm": 431.6,
+          "swe_start_mm": 9.3,
+          "season_len_d": 160,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 56.22
+        },
+        {
+          "wy": 1997,
+          "snowfall_mm": 741.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 238,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 114.88
+        },
+        {
+          "wy": 1998,
+          "snowfall_mm": 536.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 212,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 86.35
+        },
+        {
+          "wy": 1999,
+          "snowfall_mm": 657.2,
+          "swe_start_mm": 4.6,
+          "season_len_d": 247,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 98.9
+        }
+      ]
+    },
+    "09512280": {
+      "gauge": "09512280",
+      "frac_snow": 0.003,
+      "study_period": {
+        "centroid_lag_days": {
+          "mean": 3.24,
+          "sd": 2.02,
+          "n": 5,
+          "n_null_wy": 14
+        },
+        "season_length_days": {
+          "mean": 1.53,
+          "sd": 2.46,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "centroid_lag_days": {
+          "mean": null,
+          "sd": null,
+          "n": 0,
+          "n_null_wy": 2
+        },
+        "season_length_days": {
+          "mean": 0.5,
+          "sd": 0.71,
+          "n": 2
+        },
+        "start": "1997-02-10",
+        "end": "1999-12-31"
+      },
+      "acf_efold_days": 4,
+      "recession_k_train": 0.8571,
+      "recession_efold_days_train": 6.5,
+      "snowfall_mm_wy_mean": 7.0,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1982,
+          "snowfall_mm": 15.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 2,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 1.43
+        },
+        {
+          "wy": 1983,
+          "snowfall_mm": 8.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 1,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1984,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1985,
+          "snowfall_mm": 22.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 6,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 4.08
+        },
+        {
+          "wy": 1986,
+          "snowfall_mm": 11.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 3,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 1.99
+        },
+        {
+          "wy": 1987,
+          "snowfall_mm": 37.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 4,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 2.29
+        },
+        {
+          "wy": 1988,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1989,
+          "snowfall_mm": 1.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 2,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1990,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1991,
+          "snowfall_mm": 31.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 9,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 6.39
+        },
+        {
+          "wy": 1992,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1993,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1994,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1995,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1996,
+          "snowfall_mm": 2.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 1,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1997,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1998,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1999,
+          "snowfall_mm": 4.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 1,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": null
+        }
+      ]
+    },
+    "11143000": {
+      "gauge": "11143000",
+      "frac_snow": 0.01,
+      "study_period": {
+        "centroid_lag_days": {
+          "mean": 2.8,
+          "sd": 0.93,
+          "n": 6,
+          "n_null_wy": 13
+        },
+        "season_length_days": {
+          "mean": 1.58,
+          "sd": 2.43,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "centroid_lag_days": {
+          "mean": 3.03,
+          "sd": null,
+          "n": 1,
+          "n_null_wy": 1
+        },
+        "season_length_days": {
+          "mean": 2.0,
+          "sd": 2.83,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "acf_efold_days": 3,
+      "recession_k_train": 0.9388,
+      "recession_efold_days_train": 15.8,
+      "snowfall_mm_wy_mean": 14.6,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1982,
+          "snowfall_mm": 100.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 6,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 3.57
+        },
+        {
+          "wy": 1983,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1984,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1985,
+          "snowfall_mm": 21.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 2,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 1.47
+        },
+        {
+          "wy": 1986,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1987,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1988,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1989,
+          "snowfall_mm": 47.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 5,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 1.9
+        },
+        {
+          "wy": 1990,
+          "snowfall_mm": 53.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 6,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 3.82
+        },
+        {
+          "wy": 1991,
+          "snowfall_mm": 38.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 6,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 3.03
+        },
+        {
+          "wy": 1992,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1993,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1994,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1995,
+          "snowfall_mm": 5.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 1,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1996,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1997,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1998,
+          "snowfall_mm": 0.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 0,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": null
+        },
+        {
+          "wy": 1999,
+          "snowfall_mm": 11.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 4,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 3.03
+        }
+      ]
+    },
+    "11266500": {
+      "gauge": "11266500",
+      "frac_snow": 0.803,
+      "study_period": {
+        "centroid_lag_days": {
+          "mean": 61.9,
+          "sd": 29.44,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 162.68,
+          "sd": 52.59,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "centroid_lag_days": {
+          "mean": 76.98,
+          "sd": 41.21,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 180.5,
+          "sd": 74.25,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "acf_efold_days": 73,
+      "recession_k_train": 0.9178,
+      "recession_efold_days_train": 11.7,
+      "snowfall_mm_wy_mean": 877.7,
+      "swe_start_mm_max": 25.1,
+      "water_years": [
+        {
+          "wy": 1981,
+          "snowfall_mm": 564.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 110,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 46.5
+        },
+        {
+          "wy": 1982,
+          "snowfall_mm": 1240.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 185,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 77.16
+        },
+        {
+          "wy": 1983,
+          "snowfall_mm": 1528.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 266,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 120.23
+        },
+        {
+          "wy": 1984,
+          "snowfall_mm": 816.6,
+          "swe_start_mm": 6.9,
+          "season_len_d": 196,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 90.54
+        },
+        {
+          "wy": 1985,
+          "snowfall_mm": 617.4,
+          "swe_start_mm": 1.3,
+          "season_len_d": 178,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 60.7
+        },
+        {
+          "wy": 1986,
+          "snowfall_mm": 1168.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 118,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 41.7
+        },
+        {
+          "wy": 1987,
+          "snowfall_mm": 393.2,
+          "swe_start_mm": 25.1,
+          "season_len_d": 143,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 38.21
+        },
+        {
+          "wy": 1988,
+          "snowfall_mm": 583.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 150,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 40.24
+        },
+        {
+          "wy": 1989,
+          "snowfall_mm": 686.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 158,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 41.84
+        },
+        {
+          "wy": 1990,
+          "snowfall_mm": 527.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 93,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 28.58
+        },
+        {
+          "wy": 1991,
+          "snowfall_mm": 633.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 105,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 59.53
+        },
+        {
+          "wy": 1992,
+          "snowfall_mm": 576.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 129,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 27.87
+        },
+        {
+          "wy": 1993,
+          "snowfall_mm": 1234.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 212,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 96.45
+        },
+        {
+          "wy": 1994,
+          "snowfall_mm": 466.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 82,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 20.21
+        },
+        {
+          "wy": 1995,
+          "snowfall_mm": 1358.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 244,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 84.99
+        },
+        {
+          "wy": 1996,
+          "snowfall_mm": 942.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 169,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 52.53
+        },
+        {
+          "wy": 1997,
+          "snowfall_mm": 1057.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 192,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 94.89
+        },
+        {
+          "wy": 1998,
+          "snowfall_mm": 1496.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 233,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 106.12
+        },
+        {
+          "wy": 1999,
+          "snowfall_mm": 786.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 128,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 47.84
+        }
+      ]
+    },
+    "12040500": {
+      "gauge": "12040500",
+      "frac_snow": 0.039,
+      "study_period": {
+        "centroid_lag_days": {
+          "mean": 15.6,
+          "sd": 13.18,
+          "n": 19,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 48.42,
+          "sd": 38.93,
+          "n": 19
+        }
+      },
+      "test_period": {
+        "centroid_lag_days": {
+          "mean": 4.86,
+          "sd": 0.06,
+          "n": 2,
+          "n_null_wy": 0
+        },
+        "season_length_days": {
+          "mean": 13.5,
+          "sd": 0.71,
+          "n": 2
+        },
+        "start": "1996-12-31",
+        "end": "1999-12-31"
+      },
+      "acf_efold_days": 48,
+      "recession_k_train": 0.8251,
+      "recession_efold_days_train": 5.2,
+      "snowfall_mm_wy_mean": 294.9,
+      "swe_start_mm_max": 0.0,
+      "water_years": [
+        {
+          "wy": 1981,
+          "snowfall_mm": 319.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 26,
+          "start": "1980-10-01",
+          "end": "1981-09-30",
+          "lag_d": 9.22
+        },
+        {
+          "wy": 1982,
+          "snowfall_mm": 544.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 92,
+          "start": "1981-10-01",
+          "end": "1982-09-30",
+          "lag_d": 23.24
+        },
+        {
+          "wy": 1983,
+          "snowfall_mm": 164.7,
+          "swe_start_mm": 0.0,
+          "season_len_d": 22,
+          "start": "1982-10-01",
+          "end": "1983-09-30",
+          "lag_d": 8.06
+        },
+        {
+          "wy": 1984,
+          "snowfall_mm": 308.9,
+          "swe_start_mm": 0.0,
+          "season_len_d": 58,
+          "start": "1983-10-01",
+          "end": "1984-09-30",
+          "lag_d": 19.48
+        },
+        {
+          "wy": 1985,
+          "snowfall_mm": 640.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 132,
+          "start": "1984-10-01",
+          "end": "1985-09-30",
+          "lag_d": 43.59
+        },
+        {
+          "wy": 1986,
+          "snowfall_mm": 275.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 58,
+          "start": "1985-10-01",
+          "end": "1986-09-30",
+          "lag_d": 21.98
+        },
+        {
+          "wy": 1987,
+          "snowfall_mm": 68.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 10,
+          "start": "1986-10-01",
+          "end": "1987-09-30",
+          "lag_d": 2.21
+        },
+        {
+          "wy": 1988,
+          "snowfall_mm": 339.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 70,
+          "start": "1987-10-01",
+          "end": "1988-09-30",
+          "lag_d": 22.23
+        },
+        {
+          "wy": 1989,
+          "snowfall_mm": 748.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 122,
+          "start": "1988-10-01",
+          "end": "1989-09-30",
+          "lag_d": 47.92
+        },
+        {
+          "wy": 1990,
+          "snowfall_mm": 378.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 45,
+          "start": "1989-10-01",
+          "end": "1990-09-30",
+          "lag_d": 13.58
+        },
+        {
+          "wy": 1991,
+          "snowfall_mm": 318.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 55,
+          "start": "1990-10-01",
+          "end": "1991-09-30",
+          "lag_d": 12.58
+        },
+        {
+          "wy": 1992,
+          "snowfall_mm": 11.3,
+          "swe_start_mm": 0.0,
+          "season_len_d": 1,
+          "start": "1991-10-01",
+          "end": "1992-09-30",
+          "lag_d": 0.73
+        },
+        {
+          "wy": 1993,
+          "snowfall_mm": 359.8,
+          "swe_start_mm": 0.0,
+          "season_len_d": 84,
+          "start": "1992-10-01",
+          "end": "1993-09-30",
+          "lag_d": 26.65
+        },
+        {
+          "wy": 1994,
+          "snowfall_mm": 40.6,
+          "swe_start_mm": 0.0,
+          "season_len_d": 7,
+          "start": "1993-10-01",
+          "end": "1994-09-30",
+          "lag_d": 2.34
+        },
+        {
+          "wy": 1995,
+          "snowfall_mm": 187.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 20,
+          "start": "1994-10-01",
+          "end": "1995-09-30",
+          "lag_d": 7.09
+        },
+        {
+          "wy": 1996,
+          "snowfall_mm": 147.0,
+          "swe_start_mm": 0.0,
+          "season_len_d": 22,
+          "start": "1995-10-01",
+          "end": "1996-09-30",
+          "lag_d": 10.2
+        },
+        {
+          "wy": 1997,
+          "snowfall_mm": 416.2,
+          "swe_start_mm": 0.0,
+          "season_len_d": 69,
+          "start": "1996-10-01",
+          "end": "1997-09-30",
+          "lag_d": 15.65
+        },
+        {
+          "wy": 1998,
+          "snowfall_mm": 90.1,
+          "swe_start_mm": 0.0,
+          "season_len_d": 14,
+          "start": "1997-10-01",
+          "end": "1998-09-30",
+          "lag_d": 4.82
+        },
+        {
+          "wy": 1999,
+          "snowfall_mm": 243.4,
+          "swe_start_mm": 0.0,
+          "season_len_d": 13,
+          "start": "1998-10-01",
+          "end": "1999-09-30",
+          "lag_d": 4.9
+        }
+      ]
+    }
+  }
+}
