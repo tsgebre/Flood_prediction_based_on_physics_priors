@@ -2,8 +2,6 @@
 significance analysis of each model's gain over the first (baseline) model.
 
     python scripts/analyze_results.py <run_dir>/results.json
-
-Works for any results.json written by main.py.
 """
 import json
 import sys
