@@ -16,7 +16,7 @@ the 11 study basins.
 | `scripts/` | analysis utilities |
 | `results/frozen_protocol/` | headline artifact `frozen_protocol.json` (complete training configuration embedded) + per-basin `summary.csv` (source of the results table) + reproducibility-gate record |
 | `results/frozen_protocol_negatives/` | pre-registered negative-control evaluation (`evaluation.json`, verdicts and equivalence bounds) + assembled per-seed data |
-| `research/frozen_protocol_negatives/ANALYSIS_PLAN.md` | hash-locked pre-registration of the negative-control analysis (endpoints, equivalence bound derivation, decision rule, disclosures); self-verifying — recompute the lock with the awk command in its 8 |
+| `research/frozen_protocol_negatives/ANALYSIS_PLAN.md` | hash-locked pre-registration of the negative-control analysis (endpoints, equivalence bound derivation, decision rule, disclosures); self-verifying, recompute the lock with the awk command in its 8 |
 | `results/state_memory/`, `results/amc_memory/` | state-memory measurement artifacts (snow store; AMC bucket) |
 | `results/seed_power/` | seed-power (p-value trajectory) artifact |
 | `results/signatures.json` | static catchment signatures (router inputs, recession constants) |
