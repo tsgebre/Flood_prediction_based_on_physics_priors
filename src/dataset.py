@@ -2,18 +2,18 @@
 
 Key design points (see README "Methodology" section):
 
-* **Explicit missingness channel.** A discharge sensor failure is represented by
+* Explicit missingness channel. A discharge sensor failure is represented by
   (a) zeroing the normalized discharge value *and* (b) setting a companion binary
   "observed" flag to 0. Feeding the flag to the network lets it *know* the input
   is missing instead of confusing a masked value (0 in normalized space == the
   training-mean discharge) with a genuine average-flow day.
 
-* **Meteorological drivers.** The forcing file contains precipitation *and*
+* Meteorological drivers. The forcing file contains precipitation *and*
   temperature, solar radiation and vapour pressure. These "sensors" keep working
   when the discharge gauge fails, so they are exactly what the model should fall
   back on. They are included as always-observed inputs.
 
-* **Reproducible, configurable.** Date window, feature set, sequence length and an
+* Reproducible, configurable. Date window, feature set, sequence length and an
   optional log-transform of discharge are all parameters.
 """
 
@@ -271,7 +271,7 @@ def load_and_preprocess_data(
     snow_params = snow_params or {}
     if "tmax" in met_keys and "tmin" in met_keys:
         tmean = (df["tmax"].values + df["tmin"].values) / 2.0
-        snow = degree_day_snow(df["prcp"].values, tmean, **snow_params)
+        snow = degree_day_snow(df["prcp"].values, tmean, snow_params)
         df["w_eff"] = snow["w_eff"]
         df["swe_recon"] = snow["swe"]
     else:
